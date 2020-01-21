@@ -16,6 +16,12 @@ import authorityCode from './authorityCode'
 import BaiduMap from 'vue-baidu-map'
 import Print from 'vue-print-nb'//调用浏览器打印插件
 Vue.use(Print);
+
+import Video from 'video.js'//浏览器视频插件
+import 'video.js/dist/video-js.css'
+Vue.prototype.$video = Video
+
+
 // Vue.prototype.$echarts = echarts
 Vue.prototype.authorityCode = authorityCode
 Vue.use(Element, {

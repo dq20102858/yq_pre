@@ -11,18 +11,17 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-        '/collect': {
-            target: 'http://crm.912zufang.com',
+        '/': {
+            target: '',
             changeOrigin: true,
             pathRewrite: {
-                '^/collect': ''
+                '': ''
             }
         }
     },
-
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8899, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 9000, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: false,

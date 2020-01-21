@@ -49,14 +49,8 @@ export const asyncRouterMap = {
 
   '/views/layout/Layout': () => import('@/views/layout/Layout'),
   //蜂巢办
-  '/views/fchaob/dashboard/index': () => import('@/views/fchaob/dashboard'),
-  '/views/fchaob/product/index': () => import('@/views/fchaob/product/index'),
-  '/views/fchaob/product/detail': () => import('@/views/fchaob/product/detail'),
-  '/views/fchaob/product/designsys': () => import('@/views/fchaob/product/designsys'),
-  '/views/fchaob/product/spaces': () => import('@/views/fchaob/product/spaces'),
-  '/views/fchaob/product/productCate': () => import('@/views/fchaob/product/productCate'),
-  '/views/fchaob/product/setTmpDetail': () => import('@/views/fchaob/product/setTmpDetail'),
-  '/views/fchaob/admin/index': () => import('@/views/fchaob/admin/index'),
+  '/views/dashboard/index': () => import('@/views/dashboard'),
+  '/views/admin/index': () => import('@/views/admin/index'),
 
 
 }

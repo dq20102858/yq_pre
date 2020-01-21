@@ -23,14 +23,14 @@
 					</el-dropdown-item>
 				</el-dropdown-menu>
 			</el-dropdown>
-			<el-dropdown size="small" @command="handleCommand" class="select-system">
+			<!-- <el-dropdown size="small" @command="handleCommand" class="select-system">
 				<el-button type="primary">
 					{{systems[system]}}<i class="el-icon-arrow-down el-icon--right"></i>
 				</el-button>
 				<el-dropdown-menu class="el-dropdown-menu-style" slot="dropdown">
 					<el-dropdown-item command="1">蜂巢办</el-dropdown-item>
 				</el-dropdown-menu>
-			</el-dropdown>
+			</el-dropdown> -->
 		</div>
 	</el-menu>
 </template>

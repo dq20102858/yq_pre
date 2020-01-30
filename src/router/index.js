@@ -51,6 +51,8 @@ export const asyncRouterMap = {
   //蜂巢办
   '/views/dashboard/index': () => import('@/views/dashboard'),
   '/views/admin/index': () => import('@/views/admin/index'),
+  '/views/project/index': () => import('@/views/project/index'),
+  
 
 
 }

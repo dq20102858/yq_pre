@@ -6,7 +6,7 @@
       <el-menu-item index="3">详情列表</el-menu-item>
       <el-menu-item index="4">图表数据</el-menu-item>
     </el-menu>
-    <div id="company" v-show="workShow">
+    <div id="work" v-show="workShow">
       <el-button type="primary" @click="openAddWork">添加作业</el-button>
       <el-table :data="workLists"  ref="multipleTable" >
           <el-table-column  prop="sort" label="作业顺序" align="center" ></el-table-column>
@@ -57,6 +57,48 @@
             <el-button type="primary" @click="addOrEditDo()">确 定</el-button>
           </div>
       </el-dialog>
+
+      <el-dialog title="里程线别设置" :visible.sync="lineVisible">
+        <el-table :data="lineData">
+            <el-table-column  label="线别" width="100">
+                <template slot-scope="scope">
+                    <span v-if="scope.row.line_type == 1">左线</span>
+                    <span v-else-if="scope.row.line_type == 2">右线</span>
+                    <span v-else-if="scope.row.line_type == 3">入场线</span>
+                    <span v-else>出场线</span>
+                </template>
+            </el-table-column>
+            <el-table-column label="开始里程" width="180">
+                <template slot-scope="scope">
+                    <div>
+                        <span>DK</span>
+                        <input v-model="scope.row.start_flag" style="width:40px;"/>
+                        <span>+</span>
+                        <input v-model="scope.row.start_length" style="width:40px;"/>
+                    </div>
+                </template>
+            </el-table-column>
+            <el-table-column label="结束里程" width="180">
+                <template slot-scope="scope">
+                <div>
+                    <span>DK</span>
+                    <input v-model="scope.row.end_flag" style="width:40px;"/>
+                    <span>+</span>
+                    <input v-model="scope.row.end_length" style="width:40px;"/>
+                </div>
+                </template>
+            </el-table-column>
+            <el-table-column label="操作">
+                <template slot-scope="scope">
+                    <el-button size="mini" @click="addOrEditLineDo(scope.row)" v-if="scope.row.id == 0">设置</el-button>
+                    <el-button size="mini" @click="addOrEditLineDo(scope.row)" v-else>修改</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="lineVisible = false">关闭</el-button>
+          </div>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -91,7 +133,8 @@
                         { required: true, message: '请选择日期', trigger: 'change' }
                     ],
                 },
-
+                lineVisible:false,//查看线别
+                lineData:[],
             }
         },
         created() {
@@ -199,7 +242,42 @@
                         });
                     }
                 })
-            }
+            },
+            addOrEditLineDo(data){
+                this.request({
+                    url: '/project/addOrEditLineDo',
+                    method: 'post',
+                    data
+                }).then(response => {
+                    var data = response.data;
+                    if(data.status == 1){
+                        this.$message({
+                            showClose: true,
+                            message: '操作成功',
+                            type: 'success'
+                        });
+                    }else{
+                        this.$message({
+                            showClose: true,
+                            message: '操作失败',
+                            type: 'error'
+                        });
+                    }
+                })
+            },
+            getLine(id){
+                this.lineVisible = true;
+                this.request({
+                    url: '/project/getLine',
+                    method: 'get',
+                    params:{id}
+                }).then(response => {
+                    let data = response.data;
+                    if(data.status == 1){
+                       this.lineData = data.data;
+                    }
+                })
+            },
 
         }
     }

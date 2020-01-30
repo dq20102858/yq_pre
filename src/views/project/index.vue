@@ -16,23 +16,23 @@
           <el-table-column prop="total" label="设计总量" align="center" ></el-table-column>
           <el-table-column label="操作">
               <template slot-scope="scope">
-                  <el-button size="mini" @click="goDetail(scope.row.id)">查看线别</el-button>
+                  <el-button size="mini" @click="getLine(scope.row.id)">查看线别</el-button>
                   <el-button size="mini" @click="goDetail(scope.row.id)">修改</el-button>
-                  <el-button size="mini" type="danger" @click="delProd(scope.row.id)">删除</el-button>
+                  <el-button size="mini" type="danger" @click="deleteWork(scope.row.id)">删除</el-button>
               </template>
           </el-table-column>
       </el-table>
       <div class="pagination">
           <el-pagination v-if="workLists.length !== 0" background layout="prev, pager, next" :current-page="this.workPage" :total="this.workTotal"  @current-change="workPageChange"></el-pagination>
       </div>
-      <el-dialog title="添加作业信息" :visible.sync="workVisible">
+      <el-dialog :title=this.title :visible.sync="workVisible">
         <el-form :model="workData" :rules="wokRules"  ref="workForm">
             <el-form-item label="名称" label-width="80px" prop="name">
               <el-input v-model="workData.name" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item label="类别" label-width="80px" prop="type">
-                <el-radio v-model="workData.type" label="1">里程</el-radio>
-                <el-radio v-model="workData.type" label="2">计数（个，股，孔）</el-radio>
+                <el-radio v-model="workData.type" :label="1">里程</el-radio>
+                <el-radio v-model="workData.type" :label="2">计数（个，股，孔）</el-radio>
             </el-form-item>
             <el-form-item label="顺序" label-width="80px">
               <el-input v-model="workData.sort" autocomplete="off"></el-input>
@@ -54,7 +54,7 @@
           </el-form>
           <div slot="footer" class="dialog-footer">
             <el-button @click="dialogFormVisible = false">取 消</el-button>
-            <el-button type="primary" @click="addDo()">确 定</el-button>
+            <el-button type="primary" @click="addOrEditDo()">确 定</el-button>
           </div>
       </el-dialog>
     </div>
@@ -73,6 +73,7 @@
                 workData:{
                     line_type:[]
                 },
+                title :"添加作业信息",
                 wokRules:{
                     name: [
                         { required: true, message: '请输入名称', trigger: 'blur' },
@@ -84,10 +85,10 @@
                         { required: true, message: '请选择线别', trigger: 'change' },
                     ],
                     start_time: [
-                        { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
+                        { required: true, message: '请选择日期', trigger: 'change' }
                     ],
                     end_time: [
-                        { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
+                        { required: true, message: '请选择日期', trigger: 'change' }
                     ],
                 },
 
@@ -109,11 +110,18 @@
                     
                 }
             },
+            initWorkData(){
+                this.workData= {
+                    line_type:[]
+                }
+            },
             workPageChange(value){
                 this.workPage = value;
             },
             openAddWork(){
+                this.title="添加作业信息";
                 this.workVisible = true;
+                this.initWorkData();
             },
             getWorkLists(){
                 let page = this.workPage;
@@ -130,12 +138,12 @@
                     }
                 })
             },
-            addDo(){
+            addOrEditDo(){
                 this.$refs["workForm"].validate((valid) => {
                     if (valid) {
                         let data = this.workData;
                         this.request({
-                            url: '/project/addWork',
+                            url: '/project/addOrEditWork',
                             method: 'post',
                             data
                         }).then(response => {
@@ -149,9 +157,51 @@
                         console.log('error submit!!');
                         return false;
                     }
-                    });
-                },
+                });
+            },
+            goDetail(id){
+                this.title="修改作业信息";
+                this.workVisible = true;
+                this.request({
+                    url: '/project/getWorkDetail',
+                    method: 'get',
+                    params:{ id }
+                }).then(response => {
+                    let data = response.data;
+                    if(data.status == 1){
+                        this.workData = data.data
+                    }
+                })
+
+            },
+            deleteWork(id){
+                let data = {
+                    id : id
+                };
+                this.request({
+                    url: '/project/deleteWork',
+                    method: 'post',
+                    data
+                }).then(response => {
+                    let data = response.data;
+                    if(data.status == 1){
+                        this.$message({
+                            showClose: true,
+                            message: '删除成功',
+                            type: 'success'
+                        });
+                        this.getWorkLists();
+                    }else{
+                        this.$message({
+                            showClose: true,
+                            message: '删除失败',
+                            type: 'error'
+                        });
+                    }
+                })
             }
+
+        }
     }
 </script>
 <style>

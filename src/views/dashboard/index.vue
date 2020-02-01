@@ -4,23 +4,6 @@
       <!-- <source src="../../../static/7efaf904a76f6050251da6d38980600c.mp4" type="video/mp4" > -->
       <source src="rtmp://10.100.100.11:1935/live/" type="rtmp/flv" />
     </video>
-
-    <el-calendar>
-      <!-- 这里使用的是 2.5 slot 语法，对于新项目请使用 2.6 slot 语法-->
-      <template
-        slot="dateCell"
-        slot-scope="{date, data}">
-        <div class="calendar-wapper">
-          <p class="date">{{ data.day.split('-').slice(2).join('-') }}</p>
-          <p class="calendar-operate add">添加</p>
-          <p class="calendar-operate detail">详情</p>
-          <p class="calendar-show plan-finished">计划完成：</p>
-          <p class="calendar-show act-finished">实际完成：</p>
-          <p class="calendar-show remark">备注：</p>
-        </div>
-
-      </template>
-    </el-calendar>
   </div>
 </template>
 <script>

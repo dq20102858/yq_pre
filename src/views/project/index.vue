@@ -72,9 +72,9 @@
                 <template slot-scope="scope">
                     <div>
                         <span>DK</span>
-                        <input v-model="scope.row.start_flag" style="width:40px;"/>
+                        <input v-model="scope.row.start_flag" style="width:40px;" type="number"/>
                         <span>+</span>
-                        <input v-model="scope.row.start_length" style="width:40px;"/>
+                        <input v-model="scope.row.start_length" style="width:40px;" type="number"/>
                     </div>
                 </template>
             </el-table-column>
@@ -82,9 +82,9 @@
                 <template slot-scope="scope">
                 <div>
                     <span>DK</span>
-                    <input v-model="scope.row.end_flag" style="width:40px;"/>
+                    <input v-model="scope.row.end_flag" style="width:40px;" type="number"/>
                     <span>+</span>
-                    <input v-model="scope.row.end_length" style="width:40px;"/>
+                    <input v-model="scope.row.end_length" style="width:40px;" type="number"/>
                 </div>
                 </template>
             </el-table-column>
@@ -100,6 +100,77 @@
           </div>
       </el-dialog>
     </div>
+    <div id="plan" v-show="planShow">
+        <el-menu :default-active="subIndex" class="el-menu-demo" mode="horizontal" @select="handleSubSelect">
+            <el-menu-item v-for="(item,index) in lineTypeList" :index= "item.id.toString()">{{item.name}}</el-menu-item>
+        </el-menu>
+        <el-calendar>
+            <!-- 这里使用的是 2.5 slot 语法，对于新项目请使用 2.6 slot 语法-->
+            <template
+                slot="dateCell"
+                slot-scope="{date, data}">
+                <div class="calendar-wapper">
+                <p class="date">{{ data.day.split('-').slice(2).join('-') }}</p>
+                <p class="calendar-operate add" @click="addDayPlay(data.day)">添加</p>
+                <p class="calendar-operate detail" @click="getDetail(data.day)">详情</p>
+                <p class="calendar-show plan-finished">计划完成：</p>
+                <p class="calendar-show act-finished">实际完成：</p>
+                <p class="calendar-show remark">备注：</p>
+                </div>
+            </template>
+        </el-calendar>
+        <el-dialog title="添加信息" :visible.sync="planVisible">
+            <span>添加日期：{{addDate}}</span>
+            <span>作业：{{planWorkName}}</span>
+            <ul id="plan-ul">
+                <li>
+                    <div class="plan-content">线别</div>
+                    <div class="plan-content">计划开始里程</div>
+                    <div class="plan-content">计划结束里程</div>
+                </li>
+                <li v-for="(item,index) in planOneData" class="li-line">
+                    <div class="plan-content">
+                        <el-checkbox v-model="item.checked"></el-checkbox>
+                        <span v-if="item.line_type == 1">左线</span>
+                        <span v-else-if="item.line_type == 2">右线</span>
+                        <span v-else-if="item.line_type == 3">入场线</span>
+                        <span v-else>出场线</span>
+                    </div>
+                    <div class="plan-content">
+                        <span>DK</span>
+                        <input v-model="item.start_flag" style="width:40px;" type="number"/>
+                        <span>+</span>
+                        <input v-model="item.start_length" style="width:40px;" type="number"/>
+                    </div>
+                    <div class="plan-content">
+                        <span>DK</span>
+                        <input v-model="item.end_flag" style="width:40px;" type="number"/>
+                        <span>+</span>
+                        <input v-model="item.end_length" style="width:40px;"type="number" />
+                    </div>
+                    <div class="plan-tip">
+                        {{item.tip}}
+                    </div>
+                </li>
+                <p style="clear:both"></p>
+            </ul>
+            <div class="plan-btn">
+                <el-button size="mini" @click="closePlan">关闭</el-button>
+                <el-button size="mini" @click="addOnePlan">确认</el-button>
+            </div>
+         </el-dialog>
+        <el-dialog title="详细信息" :visible.sync="detailVisible">
+            <el-table :data="planDetailList">
+                <el-table-column property="line_type_desc" label="线别"></el-table-column>
+                <el-table-column property="plan_tip" label="计划里程"></el-table-column>
+                <el-table-column property="true_tip" label="实际里程"></el-table-column>
+                <el-table-column property="remark" label="备注"></el-table-column>
+            </el-table>
+            <div style="margin-top:10px;position:relative;"> 
+                <el-button size="mini" @click="closeDetail" style="position:absolute;right:0px">关闭</el-button>
+            </div>
+        </el-dialog>
+    </div>
   </div>
 </template>
 <script>
@@ -107,6 +178,7 @@
         data() {
             return {
                 activeIndex: '1',
+                subIndex:'0',
                 workShow:true,
                 workLists:[],
                 workPage:1,
@@ -135,6 +207,14 @@
                 },
                 lineVisible:false,//查看线别
                 lineData:[],
+                planShow:false,
+                lineTypeList:[],
+                planVisible:false,
+                planOneData:[],
+                addDate:"",
+                planWorkName:"",
+                planDetailList:[],
+                detailVisible:false,
             }
         },
         created() {
@@ -144,14 +224,22 @@
             handleSelect(key, keyPath) {
          
                 if(key==1){
-                    
+                    this.workShow = true;
+                    this.planShow = false;
                 }else if(key==2){
-                    
+                    this.workShow = false;
+                    this.planShow = true;
+                    this.getWorkTypeList();
                 }else if(key==3){
-                    
+                    this.workShow = false;
+                    this.planShow = false; 
                 }else{
-                    
+                    this.workShow = false;
+                    this.planShow = false; 
                 }
+            },
+            handleSubSelect(key){
+                this.subIndex = key;
             },
             initWorkData(){
                 this.workData= {
@@ -278,10 +366,173 @@
                     }
                 })
             },
+            getWorkTypeList(){
+                this.request({
+                    url: '/project/getWorkTypeList',
+                    method: 'get',
+                    params:{}
+                }).then(response => {
+                    let data = response.data;
+                    if(data.status == 1 && data.data.length>0){
+                       this.lineTypeList = data.data;
+                       this.subIndex = this.lineTypeList[0]['id'].toString();
+                    }
+                })
+            },
+            addDayPlay(date){
+                this.addDate = date;
+                this.planVisible = true;
+                let subIndex = this.subIndex;
+                let one = {};
+                this.lineTypeList.forEach(function(item,key){
+                    if(subIndex == item['id']){
+                        one = item;
+                    }
+                });
+                if(JSON.stringify(one) !== "{}"){
+                    this.planOneData = one['des'];
+                    this.planWorkName = one['name'];
+                }
+ 
+            },
+            addOnePlan(){
+                let canSubmit = false;
+                this.planOneData.forEach(function(item){
+                    if(item['checked'] == true){
+                        canSubmit = true;
+                    }
+                })
+                if(canSubmit == false){
+                    this.$message({
+                        showClose: true,
+                        message: '请选中要作业的线别',
+                        type: 'error'
+                    });
+                    return false;
+                }
+                let data = {
+                    addDate : this.addDate,
+                    checkedList : this.planOneData,
+                    workName : this.planWorkName
+                };
+                this.request({
+                    url: '/project/addOnedayPlan',
+                    method: 'post',
+                    data
+                }).then(response => {
+                    let data = response.data;
+                    if(data.status == 1){
+                        this.$message({
+                            showClose: true,
+                            message: '添加成功',
+                            type: 'success'
+                        });
+                    }else{
+                        this.$message({
+                            showClose: true,
+                            message: '添加失败',
+                            type: 'error'
+                        });
+                    }
+                })
 
+            },
+            getPlanDetailLists(addDate){
+                let proId = this.subIndex;
+                this.request({
+                    url: '/project/getPlanDetailLists',
+                    method: 'get',
+                    params:{addDate,proId}
+                }).then(response => {
+                    let data = response.data;
+                    if(data.status == 1 && data.data.length>0){
+                       this.planDetailList = data.data;
+                    }
+                })
+            },
+            getDetail(addDate){
+                this.detailVisible = true;
+                this.getPlanDetailLists(addDate);
+            },
+            closeDetail(){
+                this.detailVisible = false;
+            },
+            closePlan(){
+                this.planVisible = false;
+            },
+            
         }
     }
 </script>
 <style>
+*{
+    margin: 0;
+    padding: 0
+}
+.date{
+    text-align: center;
+    font-size: 30px;
+    color: #72acce;
+    line-height:100px;
+  }
+  .calendar-wapper{
+    position: relative;
+  }
+  .calendar-operate{
+    position: absolute;
+    top: 0px;
+    font-size: 10px;
+    cursor: pointer;
+  }
+  .add{
+    right: 34px;
+    color: red;
+  }
+  .detail{
+    right: 0px;
+    color: #72acce;
+  }
+  .calendar-show{
+    position: absolute;
+    font-size: 10px;
+    left: -5px;
+  }
+  .plan-finished{
+    top: 0px;
+  }
+  .act-finished{
+    top: 30px;
+  }
+  .remark{
+    top: 60px;
+  }
+  .el-calendar-table td{
+    height: 100px !important;
+  }
+  #plan-ul{
+      list-style:none;
+  }
+  #plan-ul li{
+    width:100%;
+    border-bottom:1px solid #ccc;
+    padding:20px 0
+  }
+  #plan-ul li .plan-content{
+    width:33%;
+    float:left;
+  }
+  #plan-ul .li-line{
+  }
+  .plan-tip{
+    margin-top: 30px;
+    margin-bottom: -10px;
+    text-align: center;
+    color: #66b6e4;
+    font-size: 12px;
 
+  }
+  .plan-btn{
+    text-align: right;
+    margin-top: 20px;
+  }
 </style>

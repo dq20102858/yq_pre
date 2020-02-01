@@ -125,7 +125,12 @@
                         <div v-for="(item,index) in calendarLists[data.day]" > {{item.true_tip}}</div>
                     </span>  
                 </p>
-                <p class="calendar-show remark">备注：</p>
+                <p class="calendar-show remark">
+                    <span>备注：</span>
+                    <span v-if="typeof(calendarLists[data.day])!=='undefined'">
+                        <div v-for="(item,index) in calendarLists[data.day]" > {{item.remark}}</div>
+                    </span>  
+                </p>
                 </div>
             </template>
         </el-calendar>

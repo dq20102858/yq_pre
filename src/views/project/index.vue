@@ -113,8 +113,18 @@
                 <p class="date">{{ data.day.split('-').slice(2).join('-') }}</p>
                 <p class="calendar-operate add" @click="addDayPlay(data.day)">添加</p>
                 <p class="calendar-operate detail" @click="getDetail(data.day)">详情</p>
-                <p class="calendar-show plan-finished">计划完成：</p>
-                <p class="calendar-show act-finished">实际完成：</p>
+                <p class="calendar-show plan-finished">
+                    <span>计划完成：</span>
+                    <span v-if="typeof(calendarLists[data.day])!=='undefined'">
+                        <div v-for="(item,index) in calendarLists[data.day]" > {{item.plan_tip}}</div>
+                    </span>            
+                </p>
+                <p class="calendar-show act-finished">
+                    <span>实际完成：</span>
+                    <span v-if="typeof(calendarLists[data.day])!=='undefined'">
+                        <div v-for="(item,index) in calendarLists[data.day]" > {{item.true_tip}}</div>
+                    </span>  
+                </p>
                 <p class="calendar-show remark">备注：</p>
                 </div>
             </template>
@@ -160,6 +170,13 @@
             </div>
          </el-dialog>
         <el-dialog title="详细信息" :visible.sync="detailVisible">
+            <div>
+            <span>施工日期：</span>
+            <span v-if="planDetailList.length>0">{{planDetailList[0]['add_date']}}</span>
+            <span>作业：</span>
+            <span>{{this.planWorkName}}</span>
+            
+            </div>
             <el-table :data="planDetailList">
                 <el-table-column property="line_type_desc" label="线别"></el-table-column>
                 <el-table-column property="plan_tip" label="计划里程"></el-table-column>
@@ -215,6 +232,7 @@
                 planWorkName:"",
                 planDetailList:[],
                 detailVisible:false,
+                calendarLists:{}
             }
         },
         created() {
@@ -222,7 +240,7 @@
         },
         methods: {
             handleSelect(key, keyPath) {
-         
+                
                 if(key==1){
                     this.workShow = true;
                     this.planShow = false;
@@ -240,6 +258,8 @@
             },
             handleSubSelect(key){
                 this.subIndex = key;
+                this.getCurrData();
+                this.getPlanByDate(key);
             },
             initWorkData(){
                 this.workData= {
@@ -376,12 +396,12 @@
                     if(data.status == 1 && data.data.length>0){
                        this.lineTypeList = data.data;
                        this.subIndex = this.lineTypeList[0]['id'].toString();
+                       this.planWorkName = this.lineTypeList[0]['name'];
+                       this.getPlanByDate(this.subIndex);
                     }
                 })
             },
-            addDayPlay(date){
-                this.addDate = date;
-                this.planVisible = true;
+            getCurrData(){
                 let subIndex = this.subIndex;
                 let one = {};
                 this.lineTypeList.forEach(function(item,key){
@@ -393,6 +413,12 @@
                     this.planOneData = one['des'];
                     this.planWorkName = one['name'];
                 }
+
+            },
+            addDayPlay(date){
+                this.addDate = date;
+                this.planVisible = true;
+                this.getCurrData();
  
             },
             addOnePlan(){
@@ -459,6 +485,20 @@
             },
             closePlan(){
                 this.planVisible = false;
+            },
+            getPlanByDate(){
+                let proId = this.subIndex;
+                this.request({
+                    url: '/project/getPlanByDate',
+                    method: 'get',
+                    params:{proId}
+                }).then(response => {
+                    let data = response.data;
+                    if(data.status == 1){
+                       this.calendarLists = data.data;
+                       console.log(this.calendarLists)
+                    }
+                })
             },
             
         }

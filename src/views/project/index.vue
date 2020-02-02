@@ -193,9 +193,105 @@
             </div>
         </el-dialog>
     </div>
+    <div id="detail" v-show="detailShow">
+        <el-form :model="searchForm" :inline="true" class="demo-form-inline" size="small" style="padding:10px;float:left">
+			<el-form-item>
+				<el-select style="width:140px;" v-model="searchForm.work" clearable placeholder="请选择作业" class="search-input search-select">
+					<el-option v-for="item in lineTypeList" :key="item.id" :label="item.name" :value="item.id"> {{item.name}}</el-option>
+				</el-select>
+            </el-form-item>
+            <el-form-item>
+				<el-date-picker v-model="searchForm.time_range" type="daterange" align="right" unlink-panels range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions2" class="" value-format="yyyy-MM-dd"> </el-date-picker>
+			</el-form-item>
+            <el-form-item>
+				<el-select style="width:140px;" v-model="searchForm.is_finish" clearable placeholder="请选择完成状态" class="search-input search-select">
+					<el-option key="1" label="已完成" value="1">已完成</el-option>
+                    <el-option key="0" label="未完成" value="0">未完成</el-option>
+				</el-select>
+            </el-form-item>
+            <el-button size="small" icon="el-icon-search" type="primary" @click="getDetailLists">检索</el-button>
+	    </el-form>
+        <el-button size="small" icon="el-icon-plus" type="primary" @click="addHistory" style="float:right;margin:10px;">添加历史记录</el-button>	    
+        <el-table :data="detailListPages"  ref="multipleTable" >
+          <el-table-column  type="index" label="序号" align="center" ></el-table-column>
+          <el-table-column prop="pro_name" label="作业名称" align="center" ></el-table-column>
+          <el-table-column prop="plan_tip" label="计划完成" align="center" ></el-table-column>
+          <el-table-column prop="true_tip" label="实际完成" align="center" ></el-table-column>
+          <el-table-column label="状态" align="center" >
+                <template slot-scope="scope">
+                    <span v-if="scope.row.is_finish == 1">已完成</span>
+                    <span v-else>未完成</span>
+                </template>
+          </el-table-column>
+          <el-table-column prop="remark" label="备注" align="center" ></el-table-column>
+          <el-table-column prop="plan_date" label="日期" align="center" ></el-table-column>
+          <el-table-column label="操作">
+              <template slot-scope="scope">
+                  <el-button size="mini" @click="getPlanDetail(scope.row.id)">修改</el-button>
+                  <el-button size="mini" type="danger" @click="deletePlan(scope.row.id)">删除</el-button>
+              </template>
+          </el-table-column>
+      </el-table>
+      <div class="pagination">
+          <el-pagination v-if="detailListPages.length !== 0" background layout="prev, pager, next" :current-page="this.detailPage" :total="this.detailTotal"  @current-change="detailPageChange"></el-pagination>
+      </div>
+    <el-dialog :title=this.historyTitle :visible.sync="addHistoryVisible">
+        <div v-show="!addShow" style="padding:10px;margin-top:-35px;color:#4d96e2;font-size: 16px;">
+            <span>作业名称：</span>
+            <span>{{historyData.pro_name}}</span>
+            <span>日期：</span>
+            <span>{{historyData.plan_time}}</span>
+            <span>线别：</span>
+            <span>{{historyData.line_type_desc}}</span>
+        </div>
+        <el-form :model="historyData" :rules="historyRules"  ref="detailForm">
+            <el-form-item label="作业名称" label-width="80px" prop="pro_id" v-show="addShow">
+              <el-select v-model="historyData.pro_id" clearable placeholder="请选择作业" @change="getTheLineType">
+					<el-option v-for="item in lineTypeList" :key="item.id" :label="item.name" :value="item.id"> {{item.name}}</el-option>
+				</el-select>
+            </el-form-item> 
+            <el-form-item label="线别" label-width="80px" prop="line_type" v-show="addShow">
+              <el-select v-model="historyData.line_type" clearable placeholder="请选择线别">
+					<el-option v-for="item in selectedLineTypeLists" :key="item.id" :label="item.name" :value="item.id"> {{item.name}}</el-option>
+				</el-select>
+            </el-form-item> 
+            <el-form-item label="计划里程" label-width="80px" prop="start_flag">
+                DK <el-input style="width:70px;" v-model="historyData.start_flag" placeholder="公里" ></el-input>
+				+<el-input style="width:50px;" v-model="historyData.start_length" placeholder="米" ></el-input>
+                ~
+				DK <el-input style="width:70px;" v-model="historyData.end_flag" placeholder="公里" ></el-input>
+				+<el-input style="width:50px;" v-model="historyData.end_length" placeholder="米" ></el-input>               
+            </el-form-item>
+            <el-form-item label="实际里程" label-width="80px" prop="t_start_flag">
+                DK <el-input style="width:70px;" v-model="historyData.t_start_flag" placeholder="公里" ></el-input>
+				+<el-input style="width:50px;" v-model="historyData.t_start_length" placeholder="米" ></el-input>
+                ~
+				DK <el-input style="width:70px;" v-model="historyData.t_end_flag" placeholder="公里" ></el-input>
+				+<el-input style="width:50px;" v-model="historyData.t_end_length" placeholder="米" ></el-input>               
+            </el-form-item>    
+
+            <el-form-item label="完成日期" label-width="80px" prop="plan_time" v-show="addShow">
+                <el-date-picker  v-model="historyData.plan_time" type="date" placeholder="选择日期"></el-date-picker>
+            </el-form-item>
+            <el-form-item label="是否完成" label-width="80px" prop="is_finish">
+                <el-radio v-model="historyData.is_finish" label="1" value="1">是</el-radio>
+                <el-radio v-model="historyData.is_finish" label="0" value="0">否</el-radio>
+            </el-form-item>
+            <el-form-item label="备注" label-width="80px">
+                <el-input v-model="historyData.remark" placeholder="填写备注"  type="textarea"></el-input> 
+            </el-form-item>
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="addHistoryVisible = false">取 消</el-button>
+            <el-button type="primary" @click="addOrEditPlanDo()">确 定</el-button>
+          </div>
+      </el-dialog>
+
+    </div>
   </div>
 </template>
 <script>
+import { publicData } from "@/utils/common";
     export default {
         data() {
             return {
@@ -237,7 +333,39 @@
                 planWorkName:"",
                 planDetailList:[],
                 detailVisible:false,
-                calendarLists:{}
+                calendarLists:{},
+                detailShow:false,
+                detailListPages:[],
+                detailPage:1,
+                detailTotal:0,
+                searchForm:{},
+                pickerOptions2: publicData.pickerOptions2,
+                addHistoryVisible:false,
+                historyData:{},
+                historyTitle:"",
+                historyRules:{
+                    pro_id: [
+                        { required: true, message: '请选择作业', trigger: 'change' },
+                    ],
+                    line_type: [
+                        { required: true, message: '请选择线别', trigger: 'change' },
+                    ],
+                    start_flag: [
+                        { required: true, message: '请输入计划里程', trigger: 'blur' },
+                    ],
+                    t_start_flag: [
+                        { required: true, message: '请输入实际里程', trigger: 'blur' }
+                    ],
+                    plan_time: [
+                        { required: true, message: '请选择日期', trigger: 'change' }
+                    ],
+                    is_finish: [
+                        { required: true, message: '请选择是否完成', trigger: 'change' }
+                    ],
+                },
+                selectedLineTypeLists:[],
+                addShow : true,
+                
             }
         },
         created() {
@@ -249,16 +377,23 @@
                 if(key==1){
                     this.workShow = true;
                     this.planShow = false;
+                    this.detailShow = false;
+                    this.getWorkLists();
                 }else if(key==2){
                     this.workShow = false;
                     this.planShow = true;
                     this.getWorkTypeList();
+                    this.detailShow = false;
                 }else if(key==3){
                     this.workShow = false;
                     this.planShow = false; 
+                    this.detailShow = true;
+                    this.getDetailLists();
+                    this.getWorkTypeList();
                 }else{
                     this.workShow = false;
                     this.planShow = false; 
+                    this.detailShow = false;
                 }
             },
             handleSubSelect(key){
@@ -273,6 +408,11 @@
             },
             workPageChange(value){
                 this.workPage = value;
+                this.getWorkLists();
+            },
+            detailPageChange(){
+                this.detailPage = value;
+                this.getDetailLists();
             },
             openAddWork(){
                 this.title="添加作业信息";
@@ -501,10 +641,130 @@
                     let data = response.data;
                     if(data.status == 1){
                        this.calendarLists = data.data;
-                       console.log(this.calendarLists)
                     }
                 })
             },
+            getDetailLists(){
+                let page = this.detailPage;
+                let pro_id = this.searchForm.work;
+                let time_range = this.searchForm.time_range;
+                let is_finish = this.searchForm.is_finish;
+                console.log(this.searchForm)
+                this.request({
+                    url: '/project/getPlanPages',
+                    method: 'get',
+                    params:{ page,pro_id,time_range,is_finish }
+                }).then(response => {
+                    let data = response.data;
+                    if(data.status == 1){
+                        this.detailListPages = data.data.data;
+                        this.detailPage = parseInt(data.data.current_page);
+                        this.detailTotal = parseInt(data.data.total);
+                    }
+                })
+            },
+            getPlanDetail(id){
+                this.addHistoryVisible = true;
+                this.historyTitle = "修改进度信息";
+                this.addShow = false;
+                this.request({
+                    url: '/project/getPlanDetail',
+                    method: 'get',
+                    params:{id}
+                }).then(response => {
+                    let data = response.data;
+                    if(data.status == 1){
+                        this.historyData = data.data;
+                        this.historyData.is_finish = this.historyData.is_finish.toString();
+                    }
+                }) 
+
+            },
+            deletePlan(id){
+                let data  = {
+                    id:id
+                };
+                this.request({
+                    url: '/project/deletePlan',
+                    method: 'post',
+                    data
+                }).then(response => {
+                    let data = response.data;
+                    if(data.status == 1){
+                        this.$message({
+                            showClose: true,
+                            message: '删除成功',
+                            type: 'success'
+                        });
+                        this.getDetailLists();
+                    }else{
+                        this.$message({
+                            showClose: true,
+                            message: '删除失败',
+                            type: 'error'
+                        });
+                    }
+                })
+            },
+            addHistory(){
+                this.addHistoryVisible = true;
+                this.historyTitle = "添加历史记录";
+                this.initHistoryData();
+                this.addShow = true;
+
+            },
+            getTheLineType(value){
+                let selectedLineTypeLists = [];
+                this.lineTypeList.forEach(function(item){
+                    if(item.id == value){
+                        selectedLineTypeLists = item.line_type_lists;
+                    }
+                });
+                this.selectedLineTypeLists = selectedLineTypeLists;
+            },
+            initHistoryData(){
+                this.historyData = {};
+            },
+            addOrEditPlanDo(){
+                this.$refs["detailForm"].validate((valid) => {
+                    if (valid) {
+                        let data  = this.historyData;
+                        this.request({
+                            url: '/project/addOrEditPlan',
+                            method: 'post',
+                            data
+                        }).then(response => {
+                            let data = response.data;
+                            let msg = "";
+                            if(data.status == 1){                      
+                                if(typeof(this.historyData.id) == "undefined" || this.historyData.id==0){
+                                    msg = "新增成功";
+                                }else{
+                                    msg = "修改成功";
+                                }
+                                this.$message({
+                                    showClose: true,
+                                    message: msg,
+                                    type: 'success'
+                                });
+                                this.getDetailLists();
+                                this.addHistoryVisible = false;
+                            }else{
+                                if(typeof(this.historyData.id) == "undefined" || this.historyData.id==0){
+                                    msg = "新增失败";
+                                }else{
+                                    msg = "修改失败";
+                                }
+                                this.$message({
+                                    showClose: true,
+                                    message: msg,
+                                    type: 'error'
+                                });
+                            }
+                        })
+                    }
+                })
+            }
             
         }
     }

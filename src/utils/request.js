@@ -4,7 +4,7 @@ import { Message } from 'element-ui'
 import store from '@/store'
 var host = window.location.host
 // host = 'http://' + host
-host = process.env.NODE_ENV == 'production' ? 'http://' + host : 'http://subway.nething.com'
+host = process.env.NODE_ENV == 'production' ? 'http://' + host : 'http://yq.nething.com'
 const service = axios.create({
   baseURL: host, // api的base_url
   withCredentials: true,

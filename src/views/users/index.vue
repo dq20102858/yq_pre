@@ -1,5 +1,11 @@
 <template>
   <div id="users">
+    <el-form :model="searchForm" :inline="true" class="demo-form-inline" size="small" style="padding:10px;float:left">      
+        <el-form-item>
+            <el-date-picker v-model="searchForm.time_range" type="daterange" align="right" unlink-panels range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions2" class="" value-format="yyyy-MM-dd"> </el-date-picker>
+        </el-form-item>
+        <el-button size="small" icon="el-icon-search" type="primary" @click="getUsersLists">检索</el-button>
+    </el-form>
     <el-table :data="usersLists" style="width: 100%">
       <el-table-column prop="name" label="姓名" ></el-table-column>
       <el-table-column prop="phone" label="联系方式" "></el-table-column> 
@@ -72,12 +78,13 @@
         </ul>
         <el-divider></el-divider>
         <el-table :data="logLists" style="width: 100%">
-            <el-table-column prop="name" label="姓名" ></el-table-column>
-            <el-table-column prop="phone" label="联系方式" "></el-table-column> 
-            <el-table-column prop="company" label="公司" ></el-table-column>   
-            <el-table-column prop="street" label="街道" ></el-table-column>   
-            <el-table-column prop="back_time" label="返回时间" ></el-table-column> 
-            <el-table-column prop="cancel_time" label="取消时间" ></el-table-column>       
+            <el-table-column prop="create_time" label="打卡时间" ></el-table-column>
+            <el-table-column prop="address" label="打卡地点"></el-table-column> 
+            <el-table-column label="证明图片" >
+                <template slot-scope="scope">
+                    <div v-for="(item,key) in scope.row.file"><img v-bind:src="item"/></div>
+                </template>
+            </el-table-column>   
         </el-table>
         <div class="pagination">
         <el-pagination v-if="logLists.length !== 0" background layout="prev, pager, next" :current-page="this.logPage" :total="this.logTotal"  @current-change="logPageChange"></el-pagination>
@@ -86,6 +93,7 @@
   </div>
 </template>
 <script>
+import { publicData } from "@/utils/common";
 export default {
     data() {
         return {
@@ -98,6 +106,8 @@ export default {
             logPage:1,
             logTotal:0,
             user_id:0,
+            searchForm:{},
+            pickerOptions2: publicData.pickerOptions2,
 
 
         }
@@ -108,10 +118,11 @@ export default {
     methods: {
         getUsersLists(){
             let page = this.usersPage;
+            let time_range = this.searchForm.time_range;
             this.request({
                 url: '/users/getUserPages',
                 method: 'get',
-                params:{page}
+                params:{page,time_range}
             }).then(response => {
                 let data = response.data;
                 if(data.status == 1){
@@ -165,7 +176,9 @@ export default {
                 }
             })
 
-        }
+        },
+        
+
     }
 }
 </script>

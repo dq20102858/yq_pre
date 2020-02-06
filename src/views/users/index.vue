@@ -235,7 +235,7 @@ export default {
             }else{
                 return false;
             }
-            let url = "http://yq.nething.com/users/exportExcel?ids="+ids+"&flag=2";
+            let url = "/users/exportExcel?ids="+ids+"&flag=2";
             window.location.href = url;
         },
         exportAll(){
@@ -244,7 +244,7 @@ export default {
             let street = this.searchForm.street;
             let keyword  = this.searchForm.keyword;
             if(this.usersLists.length>0){
-                let url = "http://yq.nething.com/users/exportExcel?area="+this.searchForm["area"]+"&street="+this.searchForm['street']+"&keyword="+this.searchForm['keyword'];
+                let url = "/users/exportExcel?area="+this.searchForm["area"]+"&street="+this.searchForm['street']+"&keyword="+this.searchForm['keyword'];
                 if(this.searchForm.time_range.length>0){
                     url = url + "&create_time[]=" +this.searchForm['time_range'][0]+"&create_time[]="+this.searchForm['time_range'][1];
                 }

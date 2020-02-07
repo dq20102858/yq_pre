@@ -82,7 +82,7 @@
         <el-button type="primary" class="button-line" @click="exportSelected">选中导出</el-button>
         <el-button type="primary" class="button-line" @click="exportAll">全部导出</el-button>
         <div class="pagination button-line">
-            <el-pagination v-if="usersLists.length !== 0" background layout="prev, pager, next" :current-page="this.usersPage" :total="this.usersTotal"  @current-change="usersPageChange"></el-pagination>
+          <el-pagination v-if="usersLists.length !== 0" background layout="prev, pager, next" :page-size="this.per_page" :current-page="this.usersPage"  :total="this.usersTotal"  @current-change="usersPageChange"></el-pagination>
         </div>
     </div>
     
@@ -96,6 +96,7 @@ export default {
             usersPage:1,
             usersLists:[],
             usersTotal:0,
+            per_page:20,
             detail:{},
             isVisible:false,          
             searchForm:{
@@ -134,7 +135,8 @@ export default {
                 if(data.status == 1){
                     this.usersLists = data.data.data;
                     this.usersPage = parseInt(data.data.current_page);
-                    this.usersTotal = parseInt(data.data.total);
+                    this.usersTotal = data.data.total;
+                    this.per_page = data.data.per_page;
                 }
             })
         },

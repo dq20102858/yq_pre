@@ -40,7 +40,7 @@
                 </el-timeline-item>
             </el-timeline>
             <div class="pagination">
-                <el-pagination v-if="logLists.length !== 0" background layout="prev, pager, next" :current-page="this.logPage" :total="this.logTotal"  @current-change="logPageChange"></el-pagination>
+                <el-pagination v-if="logLists.length !== 0" background layout="prev, pager, next" :page-size="this.per_page" :current-page="this.logPage" :total="this.logTotal"  @current-change="logPageChange"></el-pagination>
             </div>
         </el-card>
         <el-card class="record-card">
@@ -56,7 +56,7 @@
                 </el-timeline-item>
             </el-timeline>
             <div class="pagination">
-                <el-pagination v-if="errorLogLists.length !== 0" background layout="prev, pager, next" :current-page="this.errorLogPage" :total="this.errorLogTotal"  @current-change="logPageChange"></el-pagination>
+                <el-pagination v-if="errorLogLists.length !== 0" background layout="prev, pager, next" :page-size="this.per_page" :current-page="this.errorLogPage" :total="this.errorLogTotal"  @current-change="logPageChange"></el-pagination>
             </div>
         </el-card> 
     </div>  
@@ -74,7 +74,8 @@ export default {
             errorLogTotal:0,
             user_id:this.$route.query.id,
             detail:{},
-            date:new Date().toString()
+            date:new Date().toString(),
+            per_page:20,
         }
 
     },
@@ -117,10 +118,12 @@ export default {
                         this.errorLogLists = data.data.data;
                         this.errorLogPage = parseInt(data.data.current_page);
                         this.errorLogTotal = parseInt(data.data.total);
+                        this.per_page = parseInt(data.data.per_page);
                     }else{
                         this.logLists = data.data.data;
                         this.logPage = parseInt(data.data.current_page);
                         this.logTotal = parseInt(data.data.total);
+                        this.per_page = parseInt(data.data.per_page);
                     }                   
                 }
             })

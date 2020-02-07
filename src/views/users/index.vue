@@ -30,7 +30,7 @@
         <el-button size="small" icon="el-icon-search" type="primary" @click="getUsersLists">检索</el-button>
     </el-form>
     <el-table :data="usersLists" style="width: 100%" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55"></el-table-column>
+      <el-table-column type="selection"></el-table-column>
       <el-table-column prop="id" label="ID" ></el-table-column>
       <el-table-column prop="name" label="姓名" ></el-table-column>
       <el-table-column prop="phone" label="电话" "></el-table-column> 

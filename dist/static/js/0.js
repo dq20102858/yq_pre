@@ -1,5 +1,20 @@
 webpackJsonp([0],{
 
+/***/ "+6zS":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "1bg+":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14,18 +29,17 @@ var update = __webpack_require__("rjj0")("b7c7a194", content, true);
 
 /***/ }),
 
-/***/ "2vPQ":
+/***/ "2AEl":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("FZ+f")(false);
-// imports
+// style-loader: Adds some css to the DOM by adding a <style> tag
 
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
+// load the styles
+var content = __webpack_require__("+6zS");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("36e2015e", content, true);
 
 /***/ }),
 
@@ -498,6 +512,7 @@ var editor_Component = editor_normalizeComponent(
 //
 //
 //
+//
 
 
 
@@ -512,7 +527,8 @@ var editor_Component = editor_normalizeComponent(
       data: {
         jia_num: 0,
         supervise_num: 0,
-        fs_num: 0
+        fs_num: 0,
+        out_num: 0
       }
     };
   },
@@ -538,14 +554,14 @@ var editor_Component = editor_normalizeComponent(
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-bf0dbd62","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dashboard/index.vue
-var dashboard_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"dashboard-container"},[_c('el-card',{staticClass:"box-card",staticStyle:{"width":"285pt"}},[_c('div',{staticClass:"clearfix",attrs:{"slot":"header"},slot:"header"},[_c('span',[_vm._v("今日数据统计")])]),_vm._v(" "),_c('div',[_vm._v("在家隔离："+_vm._s(_vm.data.jia_num)+"人")]),_vm._v(" "),_c('div',[_vm._v("重点监督："+_vm._s(_vm.data.fs_num)+"人")]),_vm._v(" "),_c('div',[_vm._v("发烧："+_vm._s(_vm.data.supervise_num)+"人")])])],1)}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-89c1da20","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dashboard/index.vue
+var dashboard_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"dashboard-container"},[_c('el-card',{staticClass:"box-card",staticStyle:{"width":"285pt"}},[_c('div',{staticClass:"clearfix",attrs:{"slot":"header"},slot:"header"},[_c('span',[_vm._v("今日数据统计")])]),_vm._v(" "),_c('div',[_vm._v("在家隔离："+_vm._s(_vm.data.jia_num)+"人")]),_vm._v(" "),_c('div',[_vm._v("重点监督："+_vm._s(_vm.data.supervise_num)+"人")]),_vm._v(" "),_c('div',[_vm._v("外出："+_vm._s(_vm.data.out_num)+"人")]),_vm._v(" "),_c('div',[_vm._v("发烧："+_vm._s(_vm.data.fs_num)+"人")])])],1)}
 var dashboard_staticRenderFns = []
 var dashboard_esExports = { render: dashboard_render, staticRenderFns: dashboard_staticRenderFns }
 /* harmony default export */ var views_dashboard = (dashboard_esExports);
 // CONCATENATED MODULE: ./src/views/dashboard/index.vue
 function dashboard_injectStyle (ssrContext) {
-  __webpack_require__("rdPc")
+  __webpack_require__("2AEl")
 }
 var dashboard_normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -651,20 +667,6 @@ exports.push([module.i, "\n.pan-item[data-v-2f6c38f3] {\n  width: 200px;\n  heig
 
 // exports
 
-
-/***/ }),
-
-/***/ "rdPc":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("2vPQ");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("46ba9f46", content, true);
 
 /***/ })
 

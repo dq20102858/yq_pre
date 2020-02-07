@@ -74,7 +74,7 @@ export default {
             errorLogTotal:0,
             user_id:this.$route.query.id,
             detail:{},
-            date:new Date().toString(),
+            date:new Date().toLocaleDateString().replace(/\//g,'-'),
             per_page:20,
         }
 

@@ -31,11 +31,12 @@
             <div slot="header" class="clearfix">
                 <span>打卡记录</span>
             </div>
-            <el-timeline>
+            <el-timeline class="log-timeline">
                 <el-timeline-item
                 v-for="(log, index) in logLists"
                 :key="index"
                 :timestamp="log.create_time">
+                <el-image :src="log.file" class="log-image"></el-image>
                 {{log.address}}
                 </el-timeline-item>
             </el-timeline>
@@ -47,11 +48,12 @@
             <div slot="header" class="clearfix">
                 <span>异常打卡记录</span>
             </div>
-            <el-timeline>
+            <el-timeline class="log-timeline">
                 <el-timeline-item
                 v-for="(log, index) in errorLogLists"
                 :key="index"
                 :timestamp="log.create_time">
+                <el-image :src="log.file" class="log-image"></el-image>
                 {{log.address}}
                 </el-timeline-item>
             </el-timeline>
@@ -59,6 +61,10 @@
                 <el-pagination v-if="errorLogLists.length !== 0" background layout="prev, pager, next" :page-size="this.per_page" :current-page="this.errorLogPage" :total="this.errorLogTotal"  @current-change="logPageChange"></el-pagination>
             </div>
         </el-card> 
+        <div class="log-btn">
+            <el-button type="primary" @click="goBack">返回</el-button> 
+            <el-button type="primary" @click="exportExcel">导出</el-button> 
+        </div> 
     </div>  
   </div>
 </template>
@@ -133,7 +139,14 @@ export default {
             this.date = date;
             this.getLogLists(1);
             this.getLogLists(0);
-        }
+        },
+        goBack(){
+            this.$router.push({path:"/users"});
+        },
+        exportExcel(){
+            let url = "/users/exportLogs?user_id="+this.user_id;
+            window.location.href = url;
+        },
     }
 }
 </script>
@@ -165,5 +178,22 @@ export default {
 }
 .is-selected {
     color: #1989FA;
+  }
+  .log-timeline{
+      position:relative;
+  }
+  .log-image{
+    position:absolute;
+    width: 55px;
+    height: 45px;
+    left: -56px;
+  }
+ #detail .el-card{
+      padding-left:50px !important;
+  }
+  .log-btn{
+      position: relative;
+      top:calc(100vh - 100px);
+      text-align:right;
   }
 </style>

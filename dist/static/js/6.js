@@ -1,5 +1,19 @@
 webpackJsonp([6],{
 
+/***/ "6VSO":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("fXgA");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("2df781c3", content, true);
+
+/***/ }),
+
 /***/ "R8VY":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -83,7 +97,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             errorLogTotal: 0,
             user_id: this.$route.query.id,
             detail: {},
-            date: new Date().toString(),
+            date: new Date().toLocaleDateString().replace(/\//g, '-'),
             per_page: 20
         };
     },
@@ -147,7 +161,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-2f980375","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/users/detail.vue
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-5c92d00d","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/users/detail.vue
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"detail"}},[_c('div',{staticClass:"user-card left"},[_c('el-card',[_c('div',{staticClass:"clearfix",attrs:{"slot":"header"},slot:"header"},[_c('span',[_vm._v("个人基本信息")])]),_vm._v(" "),_c('div',[_vm._v("姓名："+_vm._s(_vm.detail.name))]),_vm._v(" "),_c('div',[_vm._v("电话："+_vm._s(_vm.detail.phone))]),_vm._v(" "),_c('div',[_vm._v("住址："+_vm._s(_vm.detail.address))]),_vm._v(" "),_c('div',[_vm._v("出行日期："+_vm._s(_vm.detail.travel_time))]),_vm._v(" "),_c('div',[_vm._v("出行车次/航班："+_vm._s(_vm.detail.travel_no))]),_vm._v(" "),_c('div',[_vm._v("返回日期："+_vm._s(_vm.detail.back_time))]),_vm._v(" "),_c('div',[_vm._v("返回车次/航班："+_vm._s(_vm.detail.back_no))]),_vm._v(" "),_c('div',[_vm._v("出行地区："+_vm._s(_vm.detail.travel_area)+_vm._s(_vm.detail.travel_address))]),_vm._v(" "),_c('div',[_vm._v("措施："+_vm._s(_vm.detail.measure))]),_vm._v(" "),_c('div',[_vm._v("体征："+_vm._s(_vm.detail.symptom))])]),_vm._v(" "),_c('el-calendar',{staticClass:"user-calendar",scopedSlots:_vm._u([{key:"dateCell",fn:function(ref){
 var date = ref.date;
 var data = ref.data;
@@ -157,7 +171,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ var users_detail = (esExports);
 // CONCATENATED MODULE: ./src/views/users/detail.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("oyMG")
+  __webpack_require__("6VSO")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -186,7 +200,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ "ROUX":
+/***/ "fXgA":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("FZ+f")(false);
@@ -198,20 +212,6 @@ exports.push([module.i, "\n*{\n    margin: 0;\n    padding: 0\n}\n.left , .right
 
 // exports
 
-
-/***/ }),
-
-/***/ "oyMG":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("ROUX");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("21e16ad4", content, true);
 
 /***/ })
 

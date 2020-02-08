@@ -33,13 +33,13 @@
       <el-table-column type="selection"></el-table-column>
       <el-table-column prop="id" label="ID" ></el-table-column>
       <el-table-column prop="name" label="姓名" ></el-table-column>
-      <el-table-column prop="phone" label="电话" "></el-table-column> 
+      <el-table-column prop="phone" label="电话"></el-table-column> 
       <el-table-column prop="address" label="地址" ></el-table-column>  
       <el-table-column prop="travel_time" label="出行日期" ></el-table-column>
       <el-table-column prop="traffic_no" label="出行车次/航班" ></el-table-column>
-      <el-table-column prop="back_time" label="返回日期" ></el-table-column> 
-      <el-table-column prop="back_no" label="返回车次/航班" ></el-table-column>   
-      <el-table-column prop="travel_address" label="出行地区" ></el-table-column> 
+      <el-table-column prop="back_time" label="返回日期"></el-table-column> 
+      <el-table-column prop="back_no" label="返回车次/航班"></el-table-column>   
+      <el-table-column prop="travel_area" label="出行地区"></el-table-column> 
       <el-table-column label="措施" >
         <template slot-scope="scope">
             <el-select v-model="scope.row.measure" @change="updateData(scope.row.id,scope.row.measure,'measure')">

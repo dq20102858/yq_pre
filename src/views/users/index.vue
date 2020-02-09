@@ -1,5 +1,5 @@
 <template>
-  <div id="users">
+  <div class="app-pages" id="users">
     <el-form :model="searchForm" :inline="true" class="demo-form-inline" size="small" style="padding:10px;float:left">      
         <el-form-item>
             <el-input v-model="searchForm.keyword" placeholder="请输入想要搜索的内容"></el-input>
@@ -31,13 +31,13 @@
     </el-form>
     <el-table :data="usersLists" style="width: 100%" @selection-change="handleSelectionChange">
       <el-table-column type="selection"></el-table-column>
-      <el-table-column prop="id" label="ID" ></el-table-column>
+      <el-table-column width="70px" prop="id" label="ID" ></el-table-column>
       <el-table-column prop="name" label="姓名" ></el-table-column>
-      <el-table-column prop="phone" label="电话"></el-table-column> 
-      <el-table-column prop="address" label="地址" ></el-table-column>  
-      <el-table-column prop="travel_time" label="出行日期" ></el-table-column>
+      <el-table-column show-overflow-tooltip  prop="phone" label="电话"></el-table-column> 
+      <el-table-column show-overflow-tooltip prop="address" label="地址" ></el-table-column>  
+      <el-table-column class-name="app-nowarp" prop="travel_time" label="出行日期" ></el-table-column>
       <el-table-column prop="traffic_no" label="出行车次/航班" ></el-table-column>
-      <el-table-column prop="back_time" label="返回日期"></el-table-column> 
+      <el-table-column class-name="app-nowarp" prop="back_time" label="返回日期"></el-table-column> 
       <el-table-column prop="back_no" label="返回车次/航班"></el-table-column>   
       <el-table-column prop="travel_area" label="出行地区"></el-table-column> 
       <el-table-column label="措施" >
@@ -288,4 +288,13 @@ export default {
 .pagination{
     float:right;
 }
+/* table */
+.el-table__header-wrapper{background: #157bb7;border-radius: 12px 12px 0 0;padding: 10px 0;}
+.el-table__header-wrapper tr th{background: #157bb7;color:#fff;border-bottom: none!important; white-space: nowrap;font-size: 14px;}
+.el-table__header-wrapper .is-leaf{border-bottom: none;}
+.el-table__header-wrapper tr th .cell{white-space: nowrap}
+.el-table__body-wrapper {border:1px #e7eeff solid}
+.el-table tr:nth-child(odd){background:#e7eeff;}
+.el-table tr td{color: #1D397A;}
+.el-table tr td .cell{}
 </style>

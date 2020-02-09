@@ -28,3 +28,9 @@
       }
     };
 </script>
+<style>
+p,div,h1,h2,h3,h4,ul,li,span{margin: 0;padding: 0;}
+.app-pages{margin: 15px;}
+.app-nowarp{white-space: nowrap;text-overflow: initial}
+.app-nowarp .cell{white-space: nowrap;text-overflow: initial;}
+</style>

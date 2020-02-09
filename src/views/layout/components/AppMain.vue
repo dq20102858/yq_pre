@@ -38,3 +38,6 @@
       }
     };
 </script>
+<style>
+p,div,h1,h2,h3,h4,ul,li,span{margin: 0;padding: 0;}
+</style>

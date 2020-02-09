@@ -58,4 +58,8 @@ export default {
 	background: url(../../../../assets/image/user.png) center no-repeat;
 	background-size: 100% 100%;
 }
+.el-menu-item{text-align: center;height: 44px;line-height: 44px;}
+.el-menu-item span {color: #fff}
+.el-menu-item.is-active span{color:#FAF2F2}
+.el-menu-item.is-active{border-left: 2px #fff solid;background-color:#2884ba!important }
 </style>

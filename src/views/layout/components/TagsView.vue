@@ -162,7 +162,7 @@ export default {
       border-right: 1px solid #f6f6f6;
       color: #495060;
       background: #fff;
-      padding: 0 15px;
+      padding: 0 12px;
       font-size: 14px;
       &:last-of-type {
         margin-right: 15px;

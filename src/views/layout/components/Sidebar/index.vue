@@ -27,4 +27,6 @@
 .nx-logo{text-align: center;margin-top: 40px; margin-bottom: 40px;}
 .nx-logo img{width: 48px;height: 48px;border-radius: 100%;margin-bottom: 10px;}
 .nx-logo p{font-size: 14px;color: #FAF5F5}
+.el-menu--collapse .nx-logo{margin-top: 10px;}
+.el-menu--collapse .nx-logo img{width: 28px;height: 28px;}
 </style>

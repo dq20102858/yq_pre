@@ -61,5 +61,6 @@ export default {
 .el-menu-item{text-align: center;height: 44px;line-height: 44px;}
 .el-menu-item span {color: #fff}
 .el-menu-item.is-active span{color:#FAF2F2}
-.el-menu-item.is-active{border-left: 4px #fff solid;background-color:#2884ba!important }
+.el-menu-item.is-active{border-left: 4px #fff solid;background-color:#2884ba!important;font-weight: 700 }
+
 </style>

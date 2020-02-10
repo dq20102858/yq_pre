@@ -1,6 +1,6 @@
 <template>
   <div class="app-pages" id="users">
-    <el-form :model="searchForm" :inline="true" class="demo-form-inline" size="small" style="padding:10px;float:left">      
+    <el-form :model="searchForm" :inline="true" class="demo-form-inline" size="small" style="padding:10px 0;float:left">      
         <el-form-item>
             <el-input v-model="searchForm.keyword" placeholder="请输入想要搜索的内容"></el-input>
         </el-form-item>
@@ -29,7 +29,7 @@
         </el-form-item>
         <el-button size="small" icon="el-icon-search" type="primary" @click="getUsersLists">检索</el-button>
     </el-form>
-    <el-table :data="usersLists" style="width: 100%" @selection-change="handleSelectionChange">
+    <el-table :data="usersLists" class="app-table" @selection-change="handleSelectionChange">
       <el-table-column type="selection"></el-table-column>
       <el-table-column width="70px" prop="id" label="ID" ></el-table-column>
       <el-table-column prop="name" label="姓名" ></el-table-column>
@@ -288,13 +288,6 @@ export default {
 .pagination{
     float:right;
 }
-/* table */
-.el-table__header-wrapper{background: #157bb7;border-radius: 12px 12px 0 0;padding: 10px 0;}
-.el-table__header-wrapper tr th{background: #157bb7;color:#fff;border-bottom: none!important; white-space: nowrap;font-size: 14px;}
-.el-table__header-wrapper .is-leaf{border-bottom: none;}
-.el-table__header-wrapper tr th .cell{white-space: nowrap}
-.el-table__body-wrapper {border:1px #e7eeff solid}
-.el-table tr:nth-child(odd){background:#e7eeff;}
-.el-table tr td{color: #1D397A;}
-.el-table tr td .cell{}
+
+
 </style>

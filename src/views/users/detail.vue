@@ -1,21 +1,27 @@
 <template>
   <div id="detail">
-    <div class="user-card left">
-        <el-card>
-            <div slot="header" class="clearfix">
+<el-row  :gutter="30">
+  <el-col :xs="24" :sm="8" :md="8" :lg="8">
+       <div class="user-card">
+        <el-card class="user-info">
+            <div slot="header" class="titles">
                 <span>个人基本信息</span>
             </div>
-            <div>姓名：{{detail.name}}</div>
-            <div>电话：{{detail.phone}}</div>
-            <div>住址：{{detail.address}}</div>
-            <div>出行日期：{{detail.travel_time}}</div>
-            <div>出行车次/航班：{{detail.travel_no}}</div>
-            <div>返回日期：{{detail.back_time}}</div>
-            <div>返回车次/航班：{{detail.back_no}}</div>
-            <div>出行地区：{{detail.travel_area}}{{detail.travel_address}}</div>
-            <div>措施：{{detail.measure}}</div>
-            <div>体征：{{detail.symptom}}</div>
+            <div class="item">姓名：<span>{{detail.name}}</span></div>
+            <div class="item">电话：<span>{{detail.phone}}</span></div>
+            <div class="item">住址：<span>{{detail.address}}</span></div>
+            <div class="item">出行日期：<span>{{detail.travel_time}}</span></div>
+            <div class="item">出行车次/航班：<span>{{detail.travel_no}}</span></div>
+            <div class="item">返回日期：<span>{{detail.back_time}}</span></div>
+            <div class="item">返回车次/航班：<span>{{detail.back_no}}</span></div>
+            <div class="item">出行地区：<span>{{detail.travel_area}}{{detail.travel_address}}</span></div>
+            <div class="item">措施：<span>{{detail.measure}}</span></div>
+            <div class="item">体征：<span>{{detail.symptom}}</span></div>
         </el-card>
+    <el-card class="calendar">
+         <div slot="header" class="titles">
+                <span>日历</span>
+            </div>
         <el-calendar class="user-calendar">
             <template
                 slot="dateCell"
@@ -25,10 +31,12 @@
                 </p>
             </template>
         </el-calendar>
-    </div>
-    <div class="right">
-        <el-card class="record-card">
-            <div slot="header" class="clearfix">
+         </el-card>
+   
+      </div></el-col>
+  <el-col :xs="24" :sm="8" :md="8" :lg="8">
+         <el-card class="record-card">
+             <div slot="header" class="titles">
                 <span>打卡记录</span>
             </div>
             <el-timeline class="log-timeline">
@@ -44,8 +52,10 @@
                 <el-pagination v-if="logLists.length !== 0" background layout="prev, pager, next" :page-size="this.per_page" :current-page="this.logPage" :total="this.logTotal"  @current-change="logPageChange"></el-pagination>
             </div>
         </el-card>
+     </el-col>
+  <el-col :xs="24" :sm="8" :md="8" :lg="8">
         <el-card class="record-card">
-            <div slot="header" class="clearfix">
+            <div slot="header" class="titles">
                 <span>异常打卡记录</span>
             </div>
             <el-timeline class="log-timeline">
@@ -60,13 +70,13 @@
             <div class="pagination">
                 <el-pagination v-if="errorLogLists.length !== 0" background layout="prev, pager, next" :page-size="this.per_page" :current-page="this.errorLogPage" :total="this.errorLogTotal"  @current-change="logPageChange"></el-pagination>
             </div>
-        </el-card> 
-        <div class="log-btn">
+        </el-card></el-col>
+</el-row>
+ <div class="log-btn">
             <el-button type="primary" @click="goBack">返回</el-button> 
             <el-button type="primary" @click="exportExcel">导出</el-button> 
         </div> 
-    </div>  
-  </div>
+   </div> 
 </template>
 <script>
 export default {
@@ -150,50 +160,22 @@ export default {
     }
 }
 </script>
-<style>
-*{
-    margin: 0;
-    padding: 0
-}
-.left , .right{
-    float:left
-}
-.user-calendar{
-    height:140px;
-}
-.user-card{
-    width:186pt;
-    float:left;
-}
-.record-card{
-    width:279.5pt;
-    float:left;
-}
-#detail .el-calendar-table .el-calendar-day {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 8px;
-    height: 0 !important; 
-    padding-bottom: 100% !important;
-}
-.is-selected {
-    color: #1989FA;
-  }
-  .log-timeline{
-      position:relative;
-  }
-  .log-image{
-    position:absolute;
-    width: 55px;
-    height: 45px;
-    left: -56px;
-  }
- #detail .el-card{
-      padding-left:50px !important;
-  }
-  .log-btn{
-      position: relative;
-      top:calc(100vh - 100px);
-      text-align:right;
-  }
+<style scope>
+#detail{background: #e7eeff;height: 100%;padding: 30px;}
+.titles{text-align: center;font-size: 15px;color: #fff;padding: 15px 0;font-weight: 700}
+.el-card{margin-bottom: 30px;}
+.el-card__header{padding:0;background: #157bb7;}
+.user-info .item{line-height: 31px;}
+.user-info .item span{color:#1D397A}
+
+.calendar .el-card__body{padding: 0;}
+.el-calendar-table .el-calendar-day {-webkit-box-sizing: border-box;box-sizing: border-box; padding: 8px;  height: 0 !important; padding-bottom: 100% !important;}
+.is-selected {color: #1989FA;}
+.log-timeline{position:relative;}
+.log-image{position:absolute;width: 55px; height: 45px; left: 0; border-radius: 3px;}
+.el-timeline-item__node--normal{left: 65px;}
+.el-timeline-item__tail { left: 70px;}
+.el-timeline-item__wrapper {padding-left: 85px;}
+.log-btn{position: relative;text-align:right; margin:30px;}
+.pagination{margin: 0 auto;text-align: center}
 </style>

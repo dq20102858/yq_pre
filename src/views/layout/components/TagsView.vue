@@ -145,25 +145,25 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 .tags-view-container {
-  height: 34px;
+  height: 37px;
   width: 100%;
   background: #fff;
   border-bottom: 1px solid #f1f2f3;
   box-shadow: 0 2px 10px 0 rgba(222, 222,222, 0.2);
   .tags-view-wrapper {
-    height: 34px;
+    height: 37px;
     .tags-view-item {
       display: inline-block;
       position: relative;
       cursor: pointer;
-      height: 33px;
-      line-height: 33px;
+      height: 36px;
+      line-height: 36px;
        border-top:2px  #fff solid;
       border-right: 1px solid #f6f6f6;
       color: #495060;
       background: #fff;
-      padding: 0 8px;
-      font-size: 12px;
+      padding: 0 15px;
+      font-size: 14px;
       &:last-of-type {
         margin-right: 15px;
       }

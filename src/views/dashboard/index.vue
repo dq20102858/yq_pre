@@ -17,10 +17,10 @@
     </div>
     </div>
       <div class="box-desc">
+        <div class="item">主动隔离</div>
+      <div class="item">从我做起</div>
       <div class="item">抗击疫病</div>
       <div class="item">人人有责</div>
-      <div class="item">主动隔离</div>
-      <div class="item">从我做起</div>
     </div>
     <div class="box-copy">技术支持:无锡电信</div>
   </div>

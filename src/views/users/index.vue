@@ -74,7 +74,7 @@
       </el-table-column> 
       <el-table-column label="操作">
         <template slot-scope="scope">
-            <el-button size="mini" @click="goDetail(scope.row.id)">更多</el-button>
+            <el-button class="mores" size="mini" @click="goDetail(scope.row.id)">更多</el-button>
         </template>
       </el-table-column>        
     </el-table>
@@ -288,6 +288,6 @@ export default {
 .pagination{
     float:right;
 }
-
+.mores {border: 1px #e34f10 solid;color: #e35010;background: none}
 .bottoms{margin-bottom: 15px;overflow: hidden;}
 </style>

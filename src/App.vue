@@ -37,9 +37,9 @@ p,div,h1,h2,h3,h4,ul,li,span{margin: 0;padding: 0;}
 /* table css */
 .app-table .el-table-column--selection .cell{padding-left: 17px;}
 .app-table .el-table__header-wrapper{background: #157bb7;border-radius: 6px 6px 0 0;padding: 10px 0;}
-.app-table .el-table__header-wrapper tr th{background: #157bb7;color:#fff;border-bottom: none!important; white-space: nowrap;font-size: 14px;}
+.app-table .el-table__header-wrapper tr th{background: #157bb7;color:#fff;border-bottom: none!important;font-size: 14px;}
 .app-table .el-table__header-wrapper .is-leaf{border-bottom: none;}
-.app-table .el-table__header-wrapper tr th .cell{white-space: nowrap}
+.app-table .el-table__header-wrapper tr th .cell{}
 .app-table .el-table__body-wrapper {border:1px #e7eeff solid}
 .app-table .el-table__body-wrapper tr:nth-child(odd){background:#e7eeff;}
 .app-table .el-table__body-wrapper tr td{color: #1D397A;}

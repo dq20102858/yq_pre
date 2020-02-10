@@ -78,7 +78,7 @@
         </template>
       </el-table-column>        
     </el-table>
-    <div>
+    <div class="bottoms">
         <el-button type="primary" class="button-line" @click="exportSelected">选中导出</el-button>
         <el-button type="primary" class="button-line" @click="exportAll">全部导出</el-button>
         <div class="pagination button-line">
@@ -289,5 +289,5 @@ export default {
     float:right;
 }
 
-
+.bottoms{margin-bottom: 15px;overflow: hidden;}
 </style>

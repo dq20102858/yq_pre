@@ -3360,7 +3360,7 @@ var store = __webpack_require__("IcnI");
 
 var host = window.location.host;
 // host = 'http://' + host
-host =  true ? 'http://' + host : 'http://yq.nething.com/';
+host =  true ? 'http://' + host : 'http://api.hpcn21.com';
 var service = axios_default.a.create({
   baseURL: host, // api的base_url
   withCredentials: true,

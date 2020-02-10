@@ -8,7 +8,7 @@
     <div class="box-list">
       <div class="list">
       <div class="titles">
-        <span>今日数据统计</span>
+        今日数据统计
       </div>
       <div class="item">在家隔离：<span>{{data.jia_num}}</span>人</div>
       <div class="item">重点监督：<span>{{data.supervise_num}}</span>人</div>
@@ -78,7 +78,7 @@ export default {
 .box-logo img{float: right;height: 24px; margin-right:40px;}
 .box-list{  padding:20px 60px 60px 80px;}
 .box-list .list{margin-top: 30px;background: #eff7fd;border: 1px #8fc1df solid;width:320px;border-radius: 3px;padding: 30px 30px 20px 30px;}
-.box-list .titles{font-size: 24px;color:#157bb7;font-weight: 700;margin-bottom: 15px;}
+.box-list .titles{text-align: left; font-size: 24px;color:#157bb7;font-weight: 700;margin-bottom: 15px;}
 .box-list .item{line-height: 31px}
 .box-list .item span{color:#157bb7;font-weight: 700}
 .box-desc{margin: 60px 60px 0 80px;width: 320px; display: flex;justify-content: space-between;flex-flow: wrap-reverse}

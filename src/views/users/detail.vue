@@ -36,7 +36,7 @@
       </div></el-col>
   <el-col :xs="24" :sm="8" :md="8" :lg="8">
          <el-card class="record-card">
-             <div slot="header" class="titles">
+             <div slot="header" class="titled">
                 <span>打卡记录</span>
             </div>
             <el-timeline class="log-timeline">
@@ -55,8 +55,8 @@
      </el-col>
   <el-col :xs="24" :sm="8" :md="8" :lg="8">
         <el-card class="record-card">
-            <div slot="header" class="titles">
-                <span>异常打卡记录</span>
+            <div slot="header" class="titled">
+                <span class="tit" style="color:#E34F10">异常打卡记录</span>
             </div>
             <el-timeline class="log-timeline">
                 <el-timeline-item
@@ -163,6 +163,7 @@ export default {
 <style scope>
 #detail{background: #e7eeff;height: 100%;padding: 30px;}
 .titles{text-align: center;font-size: 15px;color: #fff;padding: 15px 0;font-weight: 700}
+.titled{ font-size: 15px;color: #fff;padding: 15px 0 15px 25px;font-weight: 700}
 .el-card{margin-bottom: 30px;}
 .el-card__header{padding:0;background: #157bb7;}
 .user-info .item{line-height: 31px;}

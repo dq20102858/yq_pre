@@ -35,7 +35,7 @@ p,div,h1,h2,h3,h4,ul,li,span{margin: 0;padding: 0;}
 .app-nowarp{white-space: nowrap;text-overflow: initial}
 .app-nowarp .cell{white-space: nowrap;text-overflow: initial;}
 /* table css */
-.app-table .el-table__header-wrapper{background: #157bb7;border-radius: 12px 12px 0 0;padding: 10px 0;}
+.app-table .el-table__header-wrapper{background: #157bb7;border-radius: 6px 6px 0 0;padding: 10px 0;}
 .app-table .el-table__header-wrapper tr th{background: #157bb7;color:#fff;border-bottom: none!important; white-space: nowrap;font-size: 14px;}
 .app-table .el-table__header-wrapper .is-leaf{border-bottom: none;}
 .app-table .el-table__header-wrapper tr th .cell{white-space: nowrap}

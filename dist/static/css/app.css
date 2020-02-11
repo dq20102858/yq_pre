@@ -818,6 +818,61 @@ code a:hover {
 .multiselect--active {
   z-index: 1000 !important; }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* public css */
+p,div,h1,h2,h3,h4,ul,li,span{margin: 0;padding: 0;
+}
+.app-pages{margin: 15px;
+}
+.app-nowarp{white-space: nowrap;text-overflow: initial
+}
+.app-nowarp .cell{white-space: nowrap;text-overflow: initial;
+}
+/* table css */
+.app-table .el-table-column--selection .cell{padding-left: 17px;
+}
+.app-table .el-table__header-wrapper{background: #157bb7;border-radius: 6px 6px 0 0;padding: 10px 0;
+}
+.app-table .el-table__header-wrapper tr th{background: #157bb7;color:#fff;border-bottom: none!important;font-size: 14px;
+}
+.app-table .el-table__header-wrapper .is-leaf{border-bottom: none;
+}
+.app-table .el-table__body-wrapper {border:1px #e7eeff solid
+}
+.app-table .el-table__body-wrapper tr:nth-child(odd){background:#e7eeff;
+}
+.app-table .el-table__body-wrapper tr td{color: #1D397A;
+}
+
 #pagination {
   float: right;
   margin: 15px;
@@ -1101,6 +1156,7 @@ code a:hover {
   height: 50px;
   line-height: 50px;
   border-radius: 0px !important;
+  border-bottom: solid 1px #f6f6f6 !important;
 }
 .navbar .hamburger-container {
     line-height: 58px;
@@ -1235,6 +1291,17 @@ code a:hover {
           transform: rotate(0deg);
 }
 
+.nx-logo{text-align: center;margin-top: 40px; margin-bottom: 40px;
+}
+.nx-logo img{width: 48px;height: 48px;border-radius: 100%;margin-bottom: 10px;
+}
+.nx-logo p{font-size: 14px;color: #FAF5F5
+}
+.el-menu--collapse .nx-logo{margin-top: 10px;
+}
+.el-menu--collapse .nx-logo img{width: 28px;height: 28px;
+}
+
 .menu-icon {
   display: inline-block;
   width: 14px;
@@ -1242,54 +1309,56 @@ code a:hover {
   background: url(data:image/png;base64,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) center no-repeat;
   background-size: 100% 100%;
 }
+.el-menu-item {
+  text-align: center;
+  height: 44px;
+  line-height: 44px;
+}
+.el-menu-item span {
+  color: #fff;
+}
+.el-menu-item.is-active span {
+  color: #FAF2F2;
+}
+.el-menu-item.is-active {
+  border-left: 4px #fff solid;
+  background-color: #2884ba !important;
+  font-weight: 700;
+}
 
-.tags-view-container[data-v-d122d554] {
-  height: 34px;
+.tags-view-container[data-v-618e5983] {
+  height: 37px;
   width: 100%;
   background: #fff;
-  border-bottom: 1px solid #d8dce5;
-  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
-          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
+  border-bottom: 1px solid #f1f2f3;
+  -webkit-box-shadow: 0 2px 10px 0 rgba(222, 222, 222, 0.2);
+          box-shadow: 0 2px 10px 0 rgba(222, 222, 222, 0.2);
 }
-.tags-view-container .tags-view-wrapper[data-v-d122d554] {
-    height: 34px;
+.tags-view-container .tags-view-wrapper[data-v-618e5983] {
+    height: 37px;
 }
-.tags-view-container .tags-view-wrapper .tags-view-item[data-v-d122d554] {
+.tags-view-container .tags-view-wrapper .tags-view-item[data-v-618e5983] {
       display: inline-block;
       position: relative;
       cursor: pointer;
-      height: 26px;
-      line-height: 26px;
-      border: 1px solid #d8dce5;
+      height: 36px;
+      line-height: 36px;
+      border-top: 2px  #fff solid;
+      border-right: 1px solid #f6f6f6;
       color: #495060;
       background: #fff;
-      padding: 0 8px;
-      font-size: 12px;
-      margin-left: 5px;
-      margin-top: 4px;
+      padding: 0 12px;
+      font-size: 14px;
 }
-.tags-view-container .tags-view-wrapper .tags-view-item[data-v-d122d554]:first-of-type {
-        margin-left: 15px;
-}
-.tags-view-container .tags-view-wrapper .tags-view-item[data-v-d122d554]:last-of-type {
+.tags-view-container .tags-view-wrapper .tags-view-item[data-v-618e5983]:last-of-type {
         margin-right: 15px;
 }
-.tags-view-container .tags-view-wrapper .tags-view-item.active[data-v-d122d554] {
-        background-color: #42b983;
-        color: #fff;
-        border-color: #42b983;
+.tags-view-container .tags-view-wrapper .tags-view-item.active[data-v-618e5983] {
+        background-color: #f6f6f6;
+        color: #333;
+        border-top: 2px  #000 solid;
 }
-.tags-view-container .tags-view-wrapper .tags-view-item.active[data-v-d122d554]::before {
-          content: '';
-          background: #fff;
-          display: inline-block;
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          position: relative;
-          margin-right: 2px;
-}
-.tags-view-container .contextmenu[data-v-d122d554] {
+.tags-view-container .contextmenu[data-v-618e5983] {
     margin: 0;
     background: #fff;
     z-index: 100;
@@ -1303,12 +1372,12 @@ code a:hover {
     -webkit-box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);
             box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);
 }
-.tags-view-container .contextmenu li[data-v-d122d554] {
+.tags-view-container .contextmenu li[data-v-618e5983] {
       margin: 0;
       padding: 7px 16px;
       cursor: pointer;
 }
-.tags-view-container .contextmenu li[data-v-d122d554]:hover {
+.tags-view-container .contextmenu li[data-v-618e5983]:hover {
         background: #eee;
 }
 
@@ -1328,6 +1397,7 @@ code a:hover {
             transform: scale(0.6);
     display: inline-block;
     vertical-align: -3px;
+    font-size: 18px;
 }
 .tags-view-wrapper .tags-view-item .el-icon-close:hover {
     background-color: #b4bccc;

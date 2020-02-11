@@ -25,9 +25,9 @@
             <template
                 slot="dateCell"
                 slot-scope="{date, data}">
-                <p :class="data.isSelected ? 'is-selected' : ''"  @click="getNewLogs(data.day)">
+                <div :class="data.isSelected ? 'is-selected' : ''"  @click="getNewLogs(data.day)">
                     {{ data.day.split('-').slice(2).join('-') }}
-                </p>
+                </div>
             </template>
         </el-calendar>
          </el-card>

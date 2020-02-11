@@ -112,5 +112,11 @@
 .el-form-item .icopwd {z-index: 999; position: absolute;top: 11px;left:0;background: url('/static/login-icon2.png') no-repeat;background-size: 21px 22px; height: 18px;width: 18px;}
 .el-form-item__error{padding-top: 10px;padding-bottom: 10px;}
 .el-button{border-radius: 30px;display: block;margin-top: 30px; width: 100%;background: #157bb7 }
-  
+input:-webkit-autofill {
+ box-shadow: 0 0 0px 1000px white inset !important;
+}  
+
+input:-webkit-autofill:focus {
+ box-shadow: 0 0 0px 1000px white inset !important;
+}  
 </style>

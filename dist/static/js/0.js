@@ -1,20 +1,5 @@
 webpackJsonp([0],{
 
-/***/ "+6zS":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("FZ+f")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-
 /***/ "1bg+":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -26,20 +11,6 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var update = __webpack_require__("rjj0")("b7c7a194", content, true);
-
-/***/ }),
-
-/***/ "2AEl":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("+6zS");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("36e2015e", content, true);
 
 /***/ }),
 
@@ -513,6 +484,21 @@ var editor_Component = editor_normalizeComponent(
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -554,14 +540,14 @@ var editor_Component = editor_normalizeComponent(
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-89c1da20","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dashboard/index.vue
-var dashboard_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"dashboard-container"},[_c('el-card',{staticClass:"box-card",staticStyle:{"width":"285pt"}},[_c('div',{staticClass:"clearfix",attrs:{"slot":"header"},slot:"header"},[_c('span',[_vm._v("今日数据统计")])]),_vm._v(" "),_c('div',[_vm._v("在家隔离："+_vm._s(_vm.data.jia_num)+"人")]),_vm._v(" "),_c('div',[_vm._v("重点监督："+_vm._s(_vm.data.supervise_num)+"人")]),_vm._v(" "),_c('div',[_vm._v("外出："+_vm._s(_vm.data.out_num)+"人")]),_vm._v(" "),_c('div',[_vm._v("发烧："+_vm._s(_vm.data.fs_num)+"人")])])],1)}
-var dashboard_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-f84e9fb6","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dashboard/index.vue
+var dashboard_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"home-pages"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"dashboard-container"},[_vm._m(1),_vm._v(" "),_c('div',{staticClass:"box-list"},[_c('div',{staticClass:"list"},[_c('div',{staticClass:"titles"},[_vm._v("\n        今日数据统计\n      ")]),_vm._v(" "),_c('div',{staticClass:"item"},[_vm._v("在家隔离："),_c('span',[_vm._v(_vm._s(_vm.data.jia_num))]),_vm._v("人")]),_vm._v(" "),_c('div',{staticClass:"item"},[_vm._v("重点监督："),_c('span',[_vm._v(_vm._s(_vm.data.supervise_num))]),_vm._v("人")]),_vm._v(" "),_c('div',{staticClass:"item"},[_vm._v("外出："),_c('span',[_vm._v(_vm._s(_vm.data.out_num))]),_vm._v("人")]),_vm._v(" "),_c('div',{staticClass:"item"},[_vm._v("发烧："),_c('span',[_vm._v(_vm._s(_vm.data.fs_num))]),_vm._v("人")])])]),_vm._v(" "),_vm._m(2),_vm._v(" "),_c('div',{staticClass:"box-copy"},[_vm._v("技术支持:无锡电信")])])])}
+var dashboard_staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"welcome"},[_c('img',{attrs:{"src":"/static/welcome.png"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"box-logo"},[_c('img',{attrs:{"src":"/static/logo.png"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"box-desc"},[_c('div',{staticClass:"item"},[_vm._v("主动隔离")]),_vm._v(" "),_c('div',{staticClass:"item"},[_vm._v("从我做起")]),_vm._v(" "),_c('div',{staticClass:"item"},[_vm._v("抗击疫病")]),_vm._v(" "),_c('div',{staticClass:"item"},[_vm._v("人人有责")])])}]
 var dashboard_esExports = { render: dashboard_render, staticRenderFns: dashboard_staticRenderFns }
 /* harmony default export */ var views_dashboard = (dashboard_esExports);
 // CONCATENATED MODULE: ./src/views/dashboard/index.vue
 function dashboard_injectStyle (ssrContext) {
-  __webpack_require__("2AEl")
+  __webpack_require__("YLLS")
 }
 var dashboard_normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -640,6 +626,20 @@ var update = __webpack_require__("rjj0")("3cedadce", content, true);
 
 /***/ }),
 
+/***/ "YLLS":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("qHBp");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("5d92c1cb", content, true);
+
+/***/ }),
+
 /***/ "g8m/":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -664,6 +664,21 @@ exports = module.exports = __webpack_require__("FZ+f")(false);
 
 // module
 exports.push([module.i, "\n.pan-item[data-v-2f6c38f3] {\n  width: 200px;\n  height: 200px;\n  border-radius: 50%;\n  display: inline-block;\n  position: relative;\n  cursor: default;\n  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);\n          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);\n}\n.pan-info-roles-container[data-v-2f6c38f3] {\n  padding: 20px;\n  text-align: center;\n}\n.pan-thumb[data-v-2f6c38f3] {\n  width: 100%;\n  height: 100%;\n  background-size: 100%;\n  border-radius: 50%;\n  overflow: hidden;\n  position: absolute;\n  -webkit-transform-origin: 95% 40%;\n          transform-origin: 95% 40%;\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n}\n.pan-thumb[data-v-2f6c38f3]:after {\n  content: '';\n  width: 8px;\n  height: 8px;\n  position: absolute;\n  border-radius: 50%;\n  top: 40%;\n  left: 95%;\n  margin: -4px 0 0 -4px;\n  background: radial-gradient(ellipse at center, rgba(14, 14, 14, 1) 0%, rgba(125, 126, 125, 1) 100%);\n  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.9);\n          box-shadow: 0 0 1px rgba(255, 255, 255, 0.9);\n}\n.pan-info[data-v-2f6c38f3] {\n  position: absolute;\n  width: inherit;\n  height: inherit;\n  border-radius: 50%;\n  overflow: hidden;\n  -webkit-box-shadow: inset 0 0 0 5px rgba(0, 0, 0, 0.05);\n          box-shadow: inset 0 0 0 5px rgba(0, 0, 0, 0.05);\n}\n.pan-info h3[data-v-2f6c38f3] {\n  color: #fff;\n  text-transform: uppercase;\n  position: relative;\n  letter-spacing: 2px;\n  font-size: 18px;\n  margin: 0 60px;\n  padding: 22px 0 0 0;\n  height: 85px;\n  font-family: 'Open Sans', Arial, sans-serif;\n  text-shadow: 0 0 1px #fff, 0 1px 2px rgba(0, 0, 0, 0.3);\n}\n.pan-info p[data-v-2f6c38f3] {\n  color: #fff;\n  padding: 10px 5px;\n  font-style: italic;\n  margin: 0 30px;\n  font-size: 12px;\n  border-top: 1px solid rgba(255, 255, 255, 0.5);\n}\n.pan-info p a[data-v-2f6c38f3] {\n  display: block;\n  color: #333;\n  width: 80px;\n  height: 80px;\n  background: rgba(255, 255, 255, 0.3);\n  border-radius: 50%;\n  color: #fff;\n  font-style: normal;\n  font-weight: 700;\n  text-transform: uppercase;\n  font-size: 9px;\n  letter-spacing: 1px;\n  padding-top: 24px;\n  margin: 7px auto 0;\n  font-family: 'Open Sans', Arial, sans-serif;\n  opacity: 0;\n  -webkit-transition: opacity 0.3s ease-in-out 0.2s, background 0.2s linear 0s, -webkit-transform 0.3s ease-in-out 0.2s;\n  transition: opacity 0.3s ease-in-out 0.2s, background 0.2s linear 0s, -webkit-transform 0.3s ease-in-out 0.2s;\n  transition: transform 0.3s ease-in-out 0.2s, opacity 0.3s ease-in-out 0.2s, background 0.2s linear 0s;\n  transition: transform 0.3s ease-in-out 0.2s, opacity 0.3s ease-in-out 0.2s, background 0.2s linear 0s, -webkit-transform 0.3s ease-in-out 0.2s;\n  -webkit-transform: translateX(60px) rotate(90deg);\n          transform: translateX(60px) rotate(90deg);\n}\n.pan-info p a[data-v-2f6c38f3]:hover {\n  background: rgba(255, 255, 255, 0.5);\n}\n.pan-item:hover .pan-thumb[data-v-2f6c38f3] {\n  -webkit-transform: rotate(-110deg);\n          transform: rotate(-110deg);\n}\n.pan-item:hover .pan-info p a[data-v-2f6c38f3] {\n  opacity: 1;\n  -webkit-transform: translateX(0px) rotate(0deg);\n          transform: translateX(0px) rotate(0deg);\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "qHBp":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.home-pages{position:relative;background:#eef7fd url('/static/bg-line.png') repeat-y ;height: 100vh;\n}\n.welcome{position: absolute;right: 200px;top:60px;\n}\n.box-logo{padding-top: 30px;\n}\n.box-logo img{float: right;height: 24px; margin-right:40px;\n}\n.box-list{  padding:20px 60px 60px 80px;\n}\n.box-list .list{margin-top: 30px;background: #eff7fd;border: 1px #8fc1df solid;width:320px;border-radius: 3px;padding: 30px 30px 20px 30px;\n}\n.box-list .titles{text-align: left; font-size: 24px;color:#157bb7;font-weight: 700;margin-bottom: 15px;\n}\n.box-list .item{line-height: 31px\n}\n.box-list .item span{color:#157bb7;font-weight: 700\n}\n.box-desc{margin: 60px 60px 0 80px;width: 320px; display: -webkit-box; display: -ms-flexbox; display: flex;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;-webkit-box-orient: vertical;-webkit-box-direction: reverse;-ms-flex-flow: wrap-reverse;flex-flow: wrap-reverse\n}\n.box-desc .item {background: #157bb7;color: #fff;border-radius: 3px;padding: 10px 42px; margin-bottom:20px\n}\n.box-copy{text-align: right;color: #383737;font-size: 12px;margin-right: 40px;\n}\n", ""]);
 
 // exports
 

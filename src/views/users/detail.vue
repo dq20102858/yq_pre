@@ -66,7 +66,7 @@
                 </el-timeline-item>
             </el-timeline>
             <div class="pagination">
-                <el-pagination v-if="errorLogLists.length !== 0" background layout="prev, pager, next" :page-size="this.per_page" :current-page="this.errorLogPage" :total="this.errorLogTotal"  @current-change="logPageChange"></el-pagination>
+                <el-pagination v-if="errorLogLists.length !== 0" background layout="prev, pager, next" :page-size="this.per_page" :current-page="this.errorLogPage" :total="this.errorLogTotal"  @current-change="errorLogPageChange"></el-pagination>
             </div>
         </el-card></el-col>
 </el-row>
@@ -114,11 +114,18 @@ export default {
 
         },
         logPageChange(value){
-            this.usersPage = value;
-            this.getLogLists();
+            this.logPage = value;
+            this.getLogLists(0);
+        },
+        errorLogPageChange(value){
+            this.errorLogPage = value;
+            this.getLogLists(1);
         },
         getLogLists(is_error){
             let page = this.logPage;
+            if(is_error==1){
+                page = this.errorLogPage;
+            }           
             let user_id = this.user_id;
             let date = this.date;
             this.request({

@@ -2,7 +2,6 @@
   <div id="detail">
 <el-row  :gutter="30">
   <el-col :xs="24" :sm="8" :md="8" :lg="8">
-       <div class="user-card">
         <el-card class="user-info">
             <div slot="header" class="titles">
                 <span>个人基本信息</span>
@@ -18,9 +17,9 @@
             <div class="item">措施：<span>{{detail.measure}}</span></div>
             <div class="item">体征：<span>{{detail.symptom}}</span></div>
         </el-card>
-    <el-card class="calendar">
+       <el-card class="calendar">
          <div slot="header" class="titles">
-                <span>日历</span>
+                <span>点击日期查询</span>
             </div>
         <el-calendar class="user-calendar">
             <template
@@ -32,8 +31,7 @@
             </template>
         </el-calendar>
          </el-card>
-   
-      </div></el-col>
+   </el-col>
   <el-col :xs="24" :sm="8" :md="8" :lg="8">
          <el-card class="record-card">
              <div slot="header" class="titled">
@@ -166,14 +164,16 @@ export default {
 .titled{ font-size: 15px;color: #fff;padding: 15px 0 15px 25px;font-weight: 700}
 .el-card{margin-bottom: 30px;}
 .el-card__header{padding:0;background: #157bb7;}
-.user-info .item{line-height: 31px;}
+.user-info{min-height: 490px;}
+.record-card{min-height: 490px;}
+.user-info .item{line-height: 33px;}
 .user-info .item span{color:#1D397A}
 
 .calendar .el-card__body{padding: 0;}
-.el-calendar-table .el-calendar-day {-webkit-box-sizing: border-box;box-sizing: border-box; padding: 8px;  height: 0 !important; padding-bottom: 100% !important;}
+.el-calendar-table .el-calendar-day {-webkit-box-sizing: border-box;box-sizing: border-box;  text-align: center; height: 30px;}
 .is-selected {color: #1989FA;}
 .log-timeline{position:relative;}
-.log-image{position:absolute;width: 55px; height: 45px; left: 0; border-radius: 3px;}
+.log-image{position:absolute;width: 55px; height: 45px; left: 0; border-radius: 3px;top:3px}
 .el-timeline-item__node--normal{left: 65px;}
 .el-timeline-item__tail { left: 70px;}
 .el-timeline-item__wrapper {padding-left: 85px;}

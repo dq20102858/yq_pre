@@ -25,9 +25,9 @@
             <template
                 slot="dateCell"
                 slot-scope="{date, data}">
-                <div :class="data.isSelected ? 'is-selected' : ''"  @click="getNewLogs(data.day)">
+                <p :class="data.isSelected ? 'is-selected' : ''"  @click="getNewLogs(data.day)">
                     {{ data.day.split('-').slice(2).join('-') }}
-                </div>
+                </p>
             </template>
         </el-calendar>
          </el-card>
@@ -49,6 +49,9 @@
             <div class="pagination">
                 <el-pagination v-if="logLists.length !== 0" background layout="prev, pager, next" :page-size="this.per_page" :current-page="this.logPage" :total="this.logTotal"  @current-change="logPageChange"></el-pagination>
             </div>
+            <div class="nodata" v-if="logLists.length== 0">
+                <p>暂无打卡记录</p>
+            </div>
         </el-card>
      </el-col>
   <el-col :xs="24" :sm="8" :md="8" :lg="8">
@@ -67,6 +70,9 @@
             </el-timeline>
             <div class="pagination">
                 <el-pagination v-if="errorLogLists.length !== 0" background layout="prev, pager, next" :page-size="this.per_page" :current-page="this.errorLogPage" :total="this.errorLogTotal"  @current-change="errorLogPageChange"></el-pagination>
+            </div>
+            <div class="nodata" v-if="errorLogLists.length== 0">
+                <p>暂无打卡记录</p>
             </div>
         </el-card></el-col>
 </el-row>
@@ -177,7 +183,8 @@ export default {
 .user-info .item span{color:#1D397A}
 
 .calendar .el-card__body{padding: 0;}
-.el-calendar-table .el-calendar-day {-webkit-box-sizing: border-box;box-sizing: border-box;  text-align: center; height: 30px;}
+.el-calendar-table .el-calendar-day{height: auto;}
+.el-calendar-table .el-calendar-day p{-webkit-box-sizing: border-box;box-sizing: border-box;  text-align: center;}
 .is-selected {color: #1989FA;}
 .log-timeline{position:relative;}
 .log-image{position:absolute;width: 55px; height: 45px; left: 0; border-radius: 3px;top:3px}
@@ -186,4 +193,5 @@ export default {
 .el-timeline-item__wrapper {padding-left: 85px;}
 .log-btn{position: relative;text-align:right; margin:30px;}
 .pagination{margin: 0 auto;text-align: center}
+.nodata{text-align: center;color: #999;font-size: 16px;line-height: 360px;}
 </style>

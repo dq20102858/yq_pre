@@ -10,7 +10,7 @@
             <div class="item">电话：<span>{{detail.phone}}</span></div>
             <div class="item">住址：<span>{{detail.address}}</span></div>
             <div class="item">出行日期：<span>{{detail.travel_time}}</span></div>
-            <div class="item">出行车次/航班：<span>{{detail.travel_no}}</span></div>
+            <div class="item">出行车次/航班：<span>{{detail.traffic_no}}</span></div>
             <div class="item">返回日期：<span>{{detail.back_time}}</span></div>
             <div class="item">返回车次/航班：<span>{{detail.back_no}}</span></div>
             <div class="item">出行地区：<span>{{detail.travel_area}}{{detail.travel_address}}</span></div>

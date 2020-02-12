@@ -42,7 +42,7 @@
                 v-for="(log, index) in logLists"
                 :key="index"
                 :timestamp="log.create_time">
-                <el-image :src="log.file" class="log-image"></el-image>
+                <img :src="log.file" class="log-image" />
                 {{log.address}}
                 </el-timeline-item>
             </el-timeline>
@@ -64,7 +64,7 @@
                 v-for="(log, index) in errorLogLists"
                 :key="index"
                 :timestamp="log.create_time">
-                <el-image :src="log.file" class="log-image"></el-image>
+                <img :src="log.file" class="log-image" />
                 {{log.address}}
                 </el-timeline-item>
             </el-timeline>

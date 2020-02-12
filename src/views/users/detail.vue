@@ -183,8 +183,8 @@ export default {
 .user-info .item span{color:#1D397A}
 
 .calendar .el-card__body{padding: 0;}
-.el-calendar-table .el-calendar-day{height: auto;}
-.el-calendar-table .el-calendar-day p{-webkit-box-sizing: border-box;box-sizing: border-box;  text-align: center;}
+.el-calendar-table .el-calendar-day{height: auto;padding:0;}
+.el-calendar-table .el-calendar-day p{padding: 8px; -webkit-box-sizing: border-box;box-sizing: border-box;  text-align: center;}
 .is-selected {color: #1989FA;}
 .log-timeline{position:relative;}
 .log-image{position:absolute;width: 55px; height: 45px; left: 0; border-radius: 3px;top:3px}

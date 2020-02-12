@@ -24,7 +24,7 @@
                <i class="icopwd"></i>
                 <el-input  class="inputtxt" name="password" :type="passwordType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on" placeholder="请输入密码" />
             </el-form-item>
-            <el-button type="primary" :loading="loading" @click.native.prevent="handleLogin">登录</el-button>
+            <el-button class="loginbtn" type="primary" :loading="loading" @click.native.prevent="handleLogin">登录</el-button>
         </el-form>
           </el-col>
 </el-row>
@@ -111,7 +111,7 @@
 .el-form-item .iconame {z-index: 999; position: absolute;top: 11px;left:0;background: url('/static/login-icon1.png') no-repeat;background-size: 21px 22px; height: 18px;width: 18px;}
 .el-form-item .icopwd {z-index: 999; position: absolute;top: 11px;left:0;background: url('/static/login-icon2.png') no-repeat;background-size: 21px 22px; height: 18px;width: 18px;}
 .el-form-item__error{padding-top: 10px;padding-bottom: 10px;}
-.el-button{border-radius: 30px;display: block;margin-top: 30px; width: 100%;background: #157bb7 }
+.loginbtn{border-radius: 30px;display: block;margin-top: 30px; width: 100%;background: #157bb7 }
 input:-webkit-autofill {
  box-shadow: 0 0 0px 1000px white inset !important;
 }  

@@ -5,6 +5,7 @@
         <img src="/static/logo.png" />
       </div>
       <div class="login-box">
+   <el-row  :gutter="30">
   <el-col :xs="24" :sm="12" :md="12" :lg="12">
 <div class="login-wel">
         <img src="/static/login-img.png" />
@@ -27,7 +28,7 @@
             <el-button class="loginbtn" type="primary" :loading="loading" @click.native.prevent="handleLogin">登录</el-button>
         </el-form>
           </el-col>
-</el-row>
+   </el-row>
     </div></div>
 </template>
 <script>

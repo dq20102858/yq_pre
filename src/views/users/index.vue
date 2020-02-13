@@ -82,7 +82,7 @@
         <el-button type="primary" class="button-line" @click="exportSelected">选中导出</el-button>
         <el-button type="primary" class="button-line" @click="exportAll">全部导出</el-button>
         <div class="pagination button-line">
-          <el-pagination v-if="usersLists.length !== 0" background layout="prev, pager, next" :page-size="this.per_page" :current-page="this.usersPage"  :total="this.usersTotal"  @current-change="usersPageChange"></el-pagination>
+          <el-pagination v-if="usersLists.length !== 0" background layout="total,prev, pager, next" :page-size="this.per_page" :current-page="this.usersPage"  :total="this.usersTotal"  @current-change="usersPageChange"></el-pagination>
         </div>
     </div>
     

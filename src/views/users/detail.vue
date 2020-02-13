@@ -42,7 +42,7 @@
                 v-for="(log, index) in logLists"
                 :key="index"
                 :timestamp="log.create_time">
-                <img :src="log.file" class="log-image" />
+                <el-image :src="log.file" class="log-image"  @click="imgclick"></el-image>
                 {{log.address}}
                 </el-timeline-item>
             </el-timeline>
@@ -64,7 +64,7 @@
                 v-for="(log, index) in errorLogLists"
                 :key="index"
                 :timestamp="log.create_time">
-                <img :src="log.file" class="log-image" />
+                <el-image :src="log.file" class="log-image"  @click="imgclick"></el-image>
                 {{log.address}}
                 </el-timeline-item>
             </el-timeline>
@@ -76,6 +76,7 @@
             </div>
         </el-card></el-col>
 </el-row>
+
  <div class="log-btn">
             <el-button type="primary" @click="goBack">返回</el-button> 
             <el-button type="primary" @click="exportExcel">导出</el-button> 
@@ -117,8 +118,10 @@ export default {
                     this.detail = data.data;
                 }
             })
-
-        },
+          },
+        imgclick(){
+          document.body.style="";
+         },
         logPageChange(value){
             this.logPage = value;
             this.getLogLists(0);
